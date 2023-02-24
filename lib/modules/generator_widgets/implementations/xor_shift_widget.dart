@@ -31,7 +31,9 @@ class XorShiftWidget extends GeneratorFormWidget {
   @override
   List<int> getNumbers() {
     final XorShift xorShift = XorShift(
-        n: 4, seed: int.parse(seedController.text, radix: 2), taps: [1]);
+        n: seedController.text.length,
+        seed: int.parse(seedController.text, radix: 2),
+        taps: [1]);
     return List.generate(100, (index) => xorShift.nextInt(8));
   }
 }
