@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group("1001 XOR_shift tests", () {
     test("The first state is 1100", () {
-      var xor = XorShift(4, int.parse("1001", radix: 2), [1]);
+      var xor = XorShift(n: 4, seed: int.parse("1001", radix: 2), taps: [1]);
 
       xor.nextBit();
 
@@ -12,7 +12,7 @@ void main() {
     });
 
     test("The second state is 0110", () {
-      var xor = XorShift(4, int.parse("1100", radix: 2), [1]);
+      var xor = XorShift(n: 4, seed: int.parse("1100", radix: 2), taps: [1]);
 
       xor.nextBit();
 
@@ -20,7 +20,7 @@ void main() {
     });
 
     test("It generates the first 10 numbers", () {
-      var xor = XorShift(4, int.parse("1001", radix: 2), [1]);
+      var xor = XorShift(n: 4, seed: int.parse("1001", radix: 2), taps: [1]);
 
       List list = [];
 

@@ -3,7 +3,7 @@ class XorShift {
   int seed;
   List<int> taps;
 
-  XorShift(this.n, this.seed, this.taps);
+  XorShift({required this.n, required this.seed, required this.taps});
 
   get state {
     var radixString = seed.toRadixString(2);
