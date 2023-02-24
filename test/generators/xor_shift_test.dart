@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:random_generators/modules/generators/xor_shift.dart';
 import 'package:test/test.dart';
 
