@@ -7,7 +7,7 @@ class BlumBlumShub {
   BlumBlumShub(
       {required this.p, required this.q, required this.seed, this.k = 8}) {
     if (p % 4 != 3 || q % 4 != 3) {
-      throw ArgumentError('p and q must be primes of the form 4k+3.');
+      //// throw ArgumentError('p and q must be primes of the form 4k+3.');
     }
     p = p;
     q = q;

@@ -24,6 +24,9 @@ class Sidebar extends StatelessWidget {
       case 2:
         onChangeGenerator(GeneratorList.multiplicativo);
         break;
+      case 3:
+        onChangeGenerator(GeneratorList.blumBlumShub);
+        break;
     }
   }
 
@@ -31,6 +34,7 @@ class Sidebar extends StatelessWidget {
     0: "XorShift",
     1: "Mixto",
     2: "Multiplicativo",
+    3: "Blum Blum Shub",
   };
 
   @override

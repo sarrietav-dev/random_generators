@@ -1,1 +1,1 @@
-enum GeneratorList { xorShift, mixto, multiplicativo }
+enum GeneratorList { xorShift, mixto, multiplicativo, blumBlumShub }
