@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:random_generators/models/generator_list.dart';
 import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
 
@@ -79,6 +80,30 @@ class Sidebar extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          shape: const ContinuousRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0))),
+                          minimumSize: const Size.fromHeight(50)),
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          FaIcon(FontAwesomeIcons.fileExcel, size: 20),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text("Exportar a Excel")
+                        ],
+                      )),
+                ),
+              ],
             ),
             Row(
               children: [
