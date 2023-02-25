@@ -9,7 +9,7 @@ class Sidebar extends StatelessWidget {
       required this.onGenerate,
       required this.onChangeGenerator});
 
-  final GeneratorFormWidget generatorForm;
+  final GeneratorFormWidget? generatorForm;
   final Function(GeneratorList generator) onChangeGenerator;
   final Function(List<int> randomNumbers) onGenerate;
 
@@ -21,12 +21,16 @@ class Sidebar extends StatelessWidget {
       case 1:
         onChangeGenerator(GeneratorList.mixto);
         break;
+      case 2:
+        onChangeGenerator(GeneratorList.multiplicativo);
+        break;
     }
   }
 
   final Map<int, String> generators = {
     0: "XorShift",
     1: "Mixto",
+    2: "Multiplicativo",
   };
 
   @override
@@ -64,9 +68,10 @@ class Sidebar extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Divider(),
                     ),
-                    Expanded(
-                      child: generatorForm,
-                    ),
+                    if (generatorForm != null)
+                      Expanded(child: generatorForm!)
+                    else
+                      const Text("Seleccione un generador"),
                   ],
                 ),
               ),
@@ -82,7 +87,8 @@ class Sidebar extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(0))),
                           minimumSize: const Size.fromHeight(50)),
                       onPressed: () {
-                        var numbers = generatorForm.getNumbers();
+                        if (generatorForm == null) return;
+                        var numbers = generatorForm!.getNumbers();
                         onGenerate(numbers);
                       },
                       child: Row(
