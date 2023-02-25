@@ -41,11 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       switch (generator) {
         case GeneratorList.xorShift:
-          print("XorShift");
           generatorForm = XorShiftWidget();
           break;
         case GeneratorList.mixto:
-          print("Mixto");
           generatorForm = XorShiftWidget();
           break;
       }
