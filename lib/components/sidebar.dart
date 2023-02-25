@@ -85,7 +85,16 @@ class Sidebar extends StatelessWidget {
                         var numbers = generatorForm.getNumbers();
                         onGenerate(numbers);
                       },
-                      child: const Text("Generar")),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.casino, size: 20),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text("Generar")
+                        ],
+                      )),
                 ),
               ],
             )
