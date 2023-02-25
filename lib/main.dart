@@ -4,7 +4,7 @@ import 'package:random_generators/modules/generator_widgets/generator_widget_fac
 import 'package:random_generators/modules/generator_widgets/implementations/xor_shift_widget.dart';
 
 import 'components/sidebar.dart';
-import 'models/generator.dart';
+import 'models/generator_list.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -37,14 +37,14 @@ class _MyHomePageState extends State<MyHomePage> {
   List<int> _numbers = [];
   GeneratorFormWidget generatorForm = XorShiftWidget();
 
-  onChangeGenerator(Generator generator) {
+  onChangeGenerator(GeneratorList generator) {
     setState(() {
       switch (generator) {
-        case Generator.xorShift:
+        case GeneratorList.xorShift:
           print("XorShift");
           generatorForm = XorShiftWidget();
           break;
-        case Generator.mixto:
+        case GeneratorList.mixto:
           print("Mixto");
           generatorForm = XorShiftWidget();
           break;

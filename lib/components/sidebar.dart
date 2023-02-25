@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:random_generators/models/generator.dart';
+import 'package:random_generators/models/generator_list.dart';
 import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
 
 class Sidebar extends StatelessWidget {
@@ -10,16 +10,16 @@ class Sidebar extends StatelessWidget {
       required this.onChangeGenerator});
 
   final GeneratorFormWidget generatorForm;
-  final Function(Generator generator) onChangeGenerator;
+  final Function(GeneratorList generator) onChangeGenerator;
   final Function(List<int> randomNumbers) onGenerate;
 
   handleOnChange(int? dropdownEntryValue) {
     switch (dropdownEntryValue) {
       case 0:
-        onChangeGenerator(Generator.xorShift);
+        onChangeGenerator(GeneratorList.xorShift);
         break;
       case 1:
-        onChangeGenerator(Generator.mixto);
+        onChangeGenerator(GeneratorList.mixto);
         break;
     }
   }
@@ -53,7 +53,7 @@ class Sidebar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     DropdownMenu(
-                      onSelected: (value) => handleOnChange(value),
+                        onSelected: (value) => handleOnChange(value),
                         label: const Text("Generador"),
                         dropdownMenuEntries: [
                           for (var key in generators.keys)
