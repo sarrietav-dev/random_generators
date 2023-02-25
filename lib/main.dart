@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:random_generators/components/number_list.dart';
 import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
+import 'package:random_generators/modules/generator_widgets/implementations/mixto_widget.dart';
 import 'package:random_generators/modules/generator_widgets/implementations/xor_shift_widget.dart';
 
 import 'components/sidebar.dart';
@@ -44,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
           generatorForm = XorShiftWidget();
           break;
         case GeneratorList.mixto:
-          generatorForm = XorShiftWidget();
+          generatorForm = MixtoWidget();
           break;
       }
     });
