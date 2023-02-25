@@ -7,6 +7,7 @@ import 'package:random_generators/modules/generator_widgets/implementations/xor_
 
 import 'components/sidebar.dart';
 import 'models/generator_list.dart';
+import 'modules/generator_widgets/implementations/blum_blum_shub_widget.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -50,6 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
           break;
         case GeneratorList.multiplicativo:
           generatorForm = MultiplicativoWidget();
+          break;
+        case GeneratorList.blumBlumShub:
+          generatorForm = BlumBlumShubWidget();
           break;
       }
       _numbers = [];
