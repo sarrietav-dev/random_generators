@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:random_generators/components/number_list.dart';
 import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
 import 'package:random_generators/modules/generator_widgets/implementations/mixto_widget.dart';
+import 'package:random_generators/modules/generator_widgets/implementations/multiplicativo_widget.dart';
 import 'package:random_generators/modules/generator_widgets/implementations/xor_shift_widget.dart';
 
 import 'components/sidebar.dart';
@@ -36,7 +37,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<int> _numbers = [];
-  GeneratorFormWidget generatorForm = XorShiftWidget();
+  GeneratorFormWidget? generatorForm;
 
   onChangeGenerator(GeneratorList generator) {
     setState(() {
@@ -47,7 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
         case GeneratorList.mixto:
           generatorForm = MixtoWidget();
           break;
+        case GeneratorList.multiplicativo:
+          generatorForm = MultiplicativoWidget();
+          break;
       }
+      _numbers = [];
     });
   }
 
