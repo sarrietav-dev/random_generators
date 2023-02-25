@@ -1,0 +1,4 @@
+enum Generator {
+  xorShift,
+  mixto
+}
