@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
 import 'package:random_generators/modules/generators/generators/mixto.dart';
 
 class MixtoWidget extends GeneratorFormWidget {
+  MixtoWidget({super.key});
+
   final TextEditingController seedController = TextEditingController();
+
   get seed => int.parse(seedController.text);
 
   final TextEditingController aValueController = TextEditingController();
@@ -35,7 +37,7 @@ class MixtoWidget extends GeneratorFormWidget {
               controller: aValueController,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "A",
+                  labelText: "a",
                   hintText: "Ingrese el valor a"),
             ),
             TextFormField(
