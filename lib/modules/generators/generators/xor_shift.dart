@@ -1,9 +1,16 @@
-class XorShift {
+import '../generator.dart';
+
+class XorShift implements Generator {
   int n;
   int seed;
   List<int> taps;
+  int k;
 
-  XorShift({required this.n, required this.seed, required this.taps});
+  XorShift(
+      {required this.n,
+      required this.seed,
+      required this.taps,
+      required this.k});
 
   get state {
     var radixString = seed.toRadixString(2);
@@ -25,7 +32,7 @@ class XorShift {
     return seed & 1;
   }
 
-  int nextInt(int k) {
+  int nextNumber() {
     var number = 0;
 
     for (var i = 0; i < k; i++) {
