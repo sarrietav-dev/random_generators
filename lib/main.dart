@@ -21,12 +21,12 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MyHomePage(title: "Flutter Demo Home Page"));
+        home: const MyHomePage(title: "Flutter Demo Home Page"));
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
