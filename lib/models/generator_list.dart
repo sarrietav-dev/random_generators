@@ -1,0 +1,1 @@
+enum GeneratorList { xorShift, mixto }

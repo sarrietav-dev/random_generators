@@ -4,6 +4,7 @@ import 'package:random_generators/modules/generator_widgets/generator_widget_fac
 import 'package:random_generators/modules/generator_widgets/implementations/xor_shift_widget.dart';
 
 import 'components/sidebar.dart';
+import 'models/generator_list.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -27,7 +28,6 @@ class MyHomePage extends StatefulWidget {
   MyHomePage({super.key, required this.title});
 
   final String title;
-  final GeneratorFormWidget generatorForm = XorShiftWidget();
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -35,6 +35,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<int> _numbers = [];
+  GeneratorFormWidget generatorForm = XorShiftWidget();
+
+  onChangeGenerator(GeneratorList generator) {
+    setState(() {
+      switch (generator) {
+        case GeneratorList.xorShift:
+          print("XorShift");
+          generatorForm = XorShiftWidget();
+          break;
+        case GeneratorList.mixto:
+          print("Mixto");
+          generatorForm = XorShiftWidget();
+          break;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Row(children: [
           Sidebar(
-            generatorForm: widget.generatorForm,
+            onChangeGenerator: onChangeGenerator,
+            generatorForm: generatorForm,
             onGenerate: (List<int> randomNumbers) {
               setState(() {
                 _numbers = randomNumbers;
