@@ -69,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Row(children: [
           Sidebar(
             onChangeGenerator: onChangeGenerator,
+            onExport: () => _numbers,
             generatorForm: generatorForm,
             onGenerate: (List<int> randomNumbers) {
               setState(() {

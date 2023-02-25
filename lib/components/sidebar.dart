@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:random_generators/models/generator_list.dart';
+import 'package:random_generators/modules/excel/excel_file_builder.dart';
 import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
+import 'package:file_picker/file_picker.dart';
 
 class Sidebar extends StatelessWidget {
   Sidebar(
       {super.key,
       required this.generatorForm,
       required this.onGenerate,
-      required this.onChangeGenerator});
+      required this.onChangeGenerator,
+      required this.onExport});
 
   final GeneratorFormWidget? generatorForm;
   final Function(GeneratorList generator) onChangeGenerator;
   final Function(List<int> randomNumbers) onGenerate;
+  final List<int> Function() onExport;
 
   handleOnChange(int? dropdownEntryValue) {
     switch (dropdownEntryValue) {
@@ -91,7 +95,20 @@ class Sidebar extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(0))),
                           minimumSize: const Size.fromHeight(50)),
-                      onPressed: () {},
+                      onPressed: () async {
+                        var result = await FilePicker.platform.saveFile(
+                            fileName: "random-numbers.xlsx",
+                            type: FileType.custom,
+                            allowedExtensions: ["xlsx"]);
+
+                        if (result == null) return;
+
+                        var numbers = onExport();
+
+                        ExcelFileBuilder(
+                                randomNumbers: numbers, filePath: result)
+                            .build();
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
