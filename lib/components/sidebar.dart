@@ -96,14 +96,24 @@ class Sidebar extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(0))),
                           minimumSize: const Size.fromHeight(50)),
                       onPressed: () async {
+                        var numbers = onExport();
+
+                        if (numbers.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("No hay números para exportar"),
+                              backgroundColor: Colors.redAccent,
+                            ),
+                          );
+                          return;
+                        }
+
                         var result = await FilePicker.platform.saveFile(
                             fileName: "random-numbers.xlsx",
                             type: FileType.custom,
                             allowedExtensions: ["xlsx"]);
 
                         if (result == null) return;
-
-                        var numbers = onExport();
 
                         ExcelFileBuilder(
                                 randomNumbers: numbers, filePath: result)
@@ -133,7 +143,15 @@ class Sidebar extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(0))),
                           minimumSize: const Size.fromHeight(50)),
                       onPressed: () {
-                        if (generatorForm == null) return;
+                        if (generatorForm == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Seleccione un generador"),
+                              backgroundColor: Colors.redAccent,
+                            ),
+                          );
+                          return;
+                        }
                         var numbers = generatorForm!.getNumbers();
                         onGenerate(numbers);
                       },
