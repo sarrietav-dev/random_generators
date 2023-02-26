@@ -10,5 +10,5 @@ A flutter project that allows the user to choose from a set of generators.
   - Xor shift
   - Blum Blum Shub
   - Linear congruential generator
-  - Multiplicative variant of LCG
+  - Lehmer LCG
 - Exporting the data to Excel
