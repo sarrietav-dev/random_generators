@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:random_generators/validators/validators.dart';
 
 import '../generator.dart';
