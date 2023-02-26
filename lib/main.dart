@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:random_generators/components/number_list.dart';
 import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
 import 'package:random_generators/modules/generator_widgets/implementations/mixto_widget.dart';
@@ -77,13 +78,21 @@ class _MyHomePageState extends State<MyHomePage> {
               });
             },
           ),
-          Expanded(
-            child: ListView(
-              children: [
-                NumberList(numbers: _numbers),
-              ],
-            ),
-          )
+          if (_numbers.isNotEmpty)
+            Expanded(
+              child: ListView(
+                children: [
+                  NumberList(numbers: _numbers),
+                ],
+              ),
+            )
+          else
+            const Expanded(
+              child: Center(
+                child: FaIcon(FontAwesomeIcons.dice,
+                    size: 150, color: Colors.grey),
+              ),
+            )
         ]));
   }
 }
