@@ -87,10 +87,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             )
           else
-            const Expanded(
+            Expanded(
               child: Center(
                 child: FaIcon(FontAwesomeIcons.dice,
-                    size: 150, color: Colors.grey),
+                    size: 150, color: Colors.grey.shade300),
               ),
             )
         ]));
