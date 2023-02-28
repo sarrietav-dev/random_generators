@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:random_generators/components/number_list.dart';
-import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
-import 'package:random_generators/modules/generator_widgets/implementations/mixto_widget.dart';
-import 'package:random_generators/modules/generator_widgets/implementations/multiplicativo_widget.dart';
-import 'package:random_generators/modules/generator_widgets/implementations/xor_shift_widget.dart';
 
 import 'components/sidebar.dart';
-import 'models/generator_list.dart';
-import 'modules/generator_widgets/implementations/blum_blum_shub_widget.dart';
+import 'models/generator_state.dart';
 
 void main(List<String> args) {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) {
+        return GeneratorState();
+      },
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,71 +28,40 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  List<int> _numbers = [];
-  GeneratorFormWidget? generatorForm;
-
-  onChangeGenerator(GeneratorList generator) {
-    setState(() {
-      switch (generator) {
-        case GeneratorList.xorShift:
-          generatorForm = XorShiftWidget();
-          break;
-        case GeneratorList.mixto:
-          generatorForm = MixtoWidget();
-          break;
-        case GeneratorList.multiplicativo:
-          generatorForm = MultiplicativoWidget();
-          break;
-        case GeneratorList.blumBlumShub:
-          generatorForm = BlumBlumShubWidget();
-          break;
-      }
-      _numbers = [];
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(title),
         ),
         body: Row(children: [
-          Sidebar(
-            onChangeGenerator: onChangeGenerator,
-            onExport: () => _numbers,
-            generatorForm: generatorForm,
-            onGenerate: (List<int> randomNumbers) {
-              setState(() {
-                _numbers = randomNumbers;
-              });
-            },
-          ),
-          if (_numbers.isNotEmpty)
-            Expanded(
-              child: ListView(
-                children: [
-                  NumberList(numbers: _numbers),
-                ],
-              ),
-            )
-          else
-            Expanded(
+          const Sidebar(),
+          Consumer<GeneratorState>(
+            child: Expanded(
               child: Center(
                 child: FaIcon(FontAwesomeIcons.dice,
                     size: 150, color: Colors.grey.shade300),
               ),
-            )
+            ),
+            builder: (context, value, child) {
+              if (value.numbers.isNotEmpty) {
+                return Expanded(
+                  child: ListView(
+                    children: [
+                      NumberList(numbers: value.numbers),
+                    ],
+                  ),
+                );
+              } else {
+                return child!;
+              }
+            },
+          )
         ]));
   }
 }
