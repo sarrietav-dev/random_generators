@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:random_generators/components/sidebar.dart';
 import 'package:random_generators/models/generator_state.dart';
-import 'package:random_generators/modules/generators/generators/xor_shift.dart';
 
 class GeneratorFormField {
   final String fieldName;
-  final TextFormField formField;
+  final Widget formField;
 
   GeneratorFormField({required this.fieldName, required this.formField});
 }
