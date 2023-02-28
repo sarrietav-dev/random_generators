@@ -67,7 +67,7 @@ class MixtoWidget extends GeneratorFormTemplate {
         }
 
         if (parsedValue % 2 == 0) {
-          _warnings.add('El valor no es impar');
+          _warnings.add('El valor "a" no es impar');
         }
 
         if (!Validators.isPrime(parsedValue)) {
@@ -98,11 +98,11 @@ class MixtoWidget extends GeneratorFormTemplate {
         }
 
         if (parsedValue % 2 == 0) {
-          _warnings.add('El valor no es impar');
+          _warnings.add('El valor "C" no es impar');
         }
 
         if (parsedValue % 8 != 5) {
-          _warnings.add('El valor no cumple con la condición (c % 8 == 5)');
+          _warnings.add('El valor "C" no cumple con la condición (c % 8 == 5)');
         }
 
         if (!Validators.isPrime(parsedValue)) {
