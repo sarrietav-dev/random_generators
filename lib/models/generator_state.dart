@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:random_generators/components/generator_form_template.dart';
 import 'package:random_generators/models/generator_list.dart';
 import 'package:random_generators/modules/generators/generator.dart';
 import 'package:random_generators/modules/generators/generators/xor_shift.dart';
 
 class GeneratorState extends ChangeNotifier {
-  Generator? _generator = null;
+  GeneratorFormTemplate? currentGenerator;
   List<int> numbers = [];
 
   List<String> get generatorNames =>

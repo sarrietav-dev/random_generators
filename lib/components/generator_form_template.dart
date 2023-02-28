@@ -25,8 +25,6 @@ abstract class GeneratorFormTemplate extends StatefulWidget {
 class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
 
-  Map<String, TextEditingController> _controllers = {};
-
   _buildForm() {
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 0),
@@ -60,47 +58,5 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
         )
       ],
     );
-  }
-}
-
-class TestForm extends GeneratorFormTemplate {
-  TextEditingController seedController = TextEditingController();
-  get seed => int.parse(seedController.text, radix: 2);
-  TextEditingController kController = TextEditingController();
-  get k => int.parse(kController.text);
-
-  @override
-  List<GeneratorFormField> get formFields => [
-        GeneratorFormField(
-          fieldName: "seed",
-          formField: TextFormField(
-            controller: seedController,
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r"[01]")),
-            ],
-            decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Semilla",
-                hintText: "Ingrese la semilla"),
-          ),
-        ),
-        GeneratorFormField(
-          fieldName: "k",
-          formField: TextFormField(
-            controller: kController,
-            decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "K",
-                hintText: "Ingrese k"),
-          ),
-        ),
-      ];
-
-  @override
-  // TODO: implement numbers
-  List<int> get numbers {
-    final XorShift xorShift =
-        XorShift(n: seedController.text.length, seed: seed, k: k, taps: [1]);
-    return List.generate(100, (index) => xorShift.nextNumber());
   }
 }

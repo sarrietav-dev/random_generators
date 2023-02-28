@@ -7,6 +7,7 @@ import 'package:random_generators/models/generator_state.dart';
 import 'package:random_generators/modules/excel/excel_file_builder.dart';
 import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:random_generators/modules/generator_widgets/implementations/xor_shift_widget.dart';
 
 class Sidebar extends StatelessWidget {
   Sidebar(
@@ -61,8 +62,7 @@ class Sidebar extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // TODO: Add a dropdown to select the generator and placeholder
-            Expanded(child: _SidebarHeader(child: TestForm())),
+            Expanded(child: _SidebarHeader(child: XorShiftWidget())),
             Row(
               children: const [
                 Expanded(
