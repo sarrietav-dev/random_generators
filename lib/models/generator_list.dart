@@ -1,1 +1,8 @@
-enum GeneratorList { xorShift, mixto, multiplicativo, blumBlumShub }
+enum GeneratorList {
+  xorShift,
+  mixto,
+  multiplicativo,
+  blumBlumShub,
+  middleSquared,
+  laggedFibonacci
+}

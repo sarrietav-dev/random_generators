@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:random_generators/components/generator_form_template.dart';
 import 'package:random_generators/models/generator_list.dart';
 import 'package:random_generators/modules/generator_widgets/implementations/blum_blum_shub_widget.dart';
+import 'package:random_generators/modules/generator_widgets/implementations/lagged_fib_widget.dart';
+import 'package:random_generators/modules/generator_widgets/implementations/middle_squared_widget.dart';
 import 'package:random_generators/modules/generator_widgets/implementations/mixto_widget.dart';
 import 'package:random_generators/modules/generator_widgets/implementations/multiplicativo_widget.dart';
 import 'package:random_generators/modules/generator_widgets/implementations/xor_shift_widget.dart';
@@ -12,8 +14,14 @@ class GeneratorState extends ChangeNotifier {
   List<int> numbers = [];
   List<String> warnings = [];
 
-  List<String> get generatorNames =>
-      ["XorShift", "Mixto", "Multiplicativo", "Blum Blum Shub"];
+  List<String> get generatorNames => [
+        "XorShift",
+        "Mixto",
+        "Multiplicativo",
+        "Blum Blum Shub",
+        "Lagged Fibonacci",
+        "Middle Squared"
+      ];
 
   GeneratorList _mapIntToGenerator(int index) {
     switch (index) {
@@ -25,6 +33,10 @@ class GeneratorState extends ChangeNotifier {
         return GeneratorList.multiplicativo;
       case 3:
         return GeneratorList.blumBlumShub;
+      case 4:
+        return GeneratorList.laggedFibonacci;
+      case 5:
+        return GeneratorList.middleSquared;
       default:
         return GeneratorList.xorShift;
     }
@@ -77,6 +89,10 @@ class _GeneratorTemplateFactory {
         return MultiplicativoWidget();
       case GeneratorList.blumBlumShub:
         return BlumBlumShubWidget();
+      case GeneratorList.middleSquared:
+        return MiddleSquaredWidget();
+      case GeneratorList.laggedFibonacci:
+        return LaggedFibonacciWidget();
     }
   }
 }
