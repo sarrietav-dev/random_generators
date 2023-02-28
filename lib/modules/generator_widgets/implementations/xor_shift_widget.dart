@@ -37,6 +37,7 @@ class XorShiftWidget extends GeneratorFormTemplate {
         TextFormField(
           controller: kController,
           validator: (value) {
+            warnings = [];
             if (value == null || value.isEmpty) {
               return "Ingrese un valor";
             }
