@@ -59,12 +59,7 @@ class XorShiftWidget extends GeneratorFormTemplate {
   }
 
   @override
-  List<GeneratorFormField> get formFields => [
-        GeneratorFormField(formField: _getSeedFormField()),
-        GeneratorFormField(
-          formField: _getKFormField(),
-        ),
-      ];
+  List<Widget> get formFields => [_getSeedFormField(), _getKFormField()];
 
   @override
   List<int> get numbers {

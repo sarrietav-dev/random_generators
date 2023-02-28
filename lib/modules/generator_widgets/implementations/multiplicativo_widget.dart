@@ -57,10 +57,10 @@ class MultiplicativoWidget extends GeneratorFormTemplate {
   }
 
   @override
-  List<GeneratorFormField> get formFields => [
-        GeneratorFormField(formField: _buildSeedFormField()),
-        GeneratorFormField(formField: _buildAFormField()),
-        GeneratorFormField(formField: _buildMFormField()),
+  List<Widget> get formFields => [
+        _buildSeedFormField(),
+        _buildAFormField(),
+        _buildMFormField(),
       ];
 
   @override

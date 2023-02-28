@@ -147,12 +147,12 @@ class MixtoWidget extends GeneratorFormTemplate {
   }
 
   @override
-  List<GeneratorFormField> get formFields {
+  List<Widget> get formFields {
     return [
-      GeneratorFormField(formField: _buildSeedInput()),
-      GeneratorFormField(formField: _buildAValueInput()),
-      GeneratorFormField(formField: _buildCValueInput()),
-      GeneratorFormField(formField: _buildMValueInput()),
+      _buildSeedInput(),
+      _buildAValueInput(),
+      _buildCValueInput(),
+      _buildMValueInput(),
     ];
   }
 

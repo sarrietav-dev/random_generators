@@ -2,16 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:random_generators/models/generator_state.dart';
 
-class GeneratorFormField {
-  final Widget formField;
-
-  GeneratorFormField({required this.formField});
-}
-
 abstract class GeneratorFormTemplate extends StatefulWidget {
   const GeneratorFormTemplate({super.key});
 
-  List<GeneratorFormField> get formFields;
+  List<Widget> get formFields;
   List<int> get numbers;
 
   @override
@@ -31,7 +25,7 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
               Wrap(
                 runSpacing: 15,
                 children: [
-                  for (var field in widget.formFields) field.formField,
+                  for (var field in widget.formFields) field,
                 ],
               ),
             ],
