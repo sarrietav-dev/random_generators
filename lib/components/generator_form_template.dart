@@ -48,6 +48,8 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
         Expanded(child: _buildForm()),
         GenerateButton(
           onPressed: () {
+            if (!_formState.currentState!.validate()) return;
+
             var numbers = widget.numbers;
 
             Provider.of<GeneratorState>(context, listen: false)
@@ -56,5 +58,32 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
         )
       ],
     );
+  }
+}
+
+class GenerateButton extends StatelessWidget {
+  const GenerateButton({super.key, required this.onPressed});
+
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue,
+            shape: const ContinuousRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(0))),
+            minimumSize: const Size.fromHeight(50)),
+        onPressed: () => onPressed(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(Icons.casino, size: 20),
+            SizedBox(
+              width: 10,
+            ),
+            Text("Generar")
+          ],
+        ));
   }
 }

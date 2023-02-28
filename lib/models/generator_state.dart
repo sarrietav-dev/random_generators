@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:random_generators/components/generator_form_template.dart';
 import 'package:random_generators/models/generator_list.dart';
+import 'package:random_generators/modules/generator_widgets/implementations/blum_blum_shub_widget.dart';
+import 'package:random_generators/modules/generator_widgets/implementations/mixto_widget.dart';
+import 'package:random_generators/modules/generator_widgets/implementations/multiplicativo_widget.dart';
+import 'package:random_generators/modules/generator_widgets/implementations/xor_shift_widget.dart';
 import 'package:random_generators/modules/generators/generator.dart';
-import 'package:random_generators/modules/generators/generators/xor_shift.dart';
 
 class GeneratorState extends ChangeNotifier {
   GeneratorFormTemplate? currentGenerator;
@@ -27,6 +30,8 @@ class GeneratorState extends ChangeNotifier {
   }
 
   void changeGenerator(int index) {
+    currentGenerator = _GeneratorTemplateFactory.getGeneratorTemplate(
+        _mapIntToGenerator(index));
     notifyListeners();
   }
 
@@ -38,5 +43,21 @@ class GeneratorState extends ChangeNotifier {
     numbers = newNumbers;
     notifyListeners();
     print(numbers);
+  }
+}
+
+class _GeneratorTemplateFactory {
+  static GeneratorFormTemplate getGeneratorTemplate(
+      GeneratorList generatorList) {
+    switch (generatorList) {
+      case GeneratorList.xorShift:
+        return XorShiftWidget();
+      case GeneratorList.mixto:
+        return MixtoWidget();
+      case GeneratorList.multiplicativo:
+        return MultiplicativoWidget();
+      case GeneratorList.blumBlumShub:
+        return BlumBlumShubWidget();
+    }
   }
 }

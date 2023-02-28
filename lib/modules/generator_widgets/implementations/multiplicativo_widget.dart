@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:random_generators/components/generator_form_template.dart';
-import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
 import 'package:random_generators/modules/generators/generators/multiplicativo.dart';
 
 class MultiplicativoWidget extends GeneratorFormTemplate {
