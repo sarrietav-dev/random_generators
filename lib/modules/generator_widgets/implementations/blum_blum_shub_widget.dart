@@ -76,11 +76,10 @@ class BlumBlumShubWidget extends GeneratorFormTemplate {
   @override
   List<GeneratorFormField> get formFields {
     return [
-      GeneratorFormField(
-          fieldName: "Semilla", formField: _buildSeedFormField()),
-      GeneratorFormField(fieldName: "P", formField: _buildPFormField()),
-      GeneratorFormField(fieldName: "Q", formField: _buildQFormField()),
-      GeneratorFormField(fieldName: "K", formField: _buildKFormField()),
+      GeneratorFormField(formField: _buildSeedFormField()),
+      GeneratorFormField(formField: _buildPFormField()),
+      GeneratorFormField(formField: _buildQFormField()),
+      GeneratorFormField(formField: _buildKFormField()),
     ];
   }
 

@@ -3,10 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:random_generators/models/generator_state.dart';
 
 class GeneratorFormField {
-  final String fieldName;
   final Widget formField;
 
-  GeneratorFormField({required this.fieldName, required this.formField});
+  GeneratorFormField({required this.formField});
 }
 
 abstract class GeneratorFormTemplate extends StatefulWidget {

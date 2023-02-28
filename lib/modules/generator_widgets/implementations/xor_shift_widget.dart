@@ -60,9 +60,8 @@ class XorShiftWidget extends GeneratorFormTemplate {
 
   @override
   List<GeneratorFormField> get formFields => [
-        GeneratorFormField(fieldName: "seed", formField: _getSeedFormField()),
+        GeneratorFormField(formField: _getSeedFormField()),
         GeneratorFormField(
-          fieldName: "k",
           formField: _getKFormField(),
         ),
       ];
