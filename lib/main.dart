@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:random_generators/components/number_list.dart';
 import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
-import 'package:random_generators/modules/generator_widgets/implementations/mixto_widget.dart';
 import 'package:random_generators/modules/generator_widgets/implementations/multiplicativo_widget.dart';
 import 'package:random_generators/modules/generator_widgets/implementations/xor_shift_widget.dart';
 
 import 'components/sidebar.dart';
 import 'models/generator_list.dart';
+import 'models/generator_state.dart';
 import 'modules/generator_widgets/implementations/blum_blum_shub_widget.dart';
 
 void main(List<String> args) {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) {
+        return GeneratorState();
+      },
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -48,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           generatorForm = XorShiftWidget();
           break;
         case GeneratorList.mixto:
-          generatorForm = MixtoWidget();
+          // generatorForm = MixtoWidget();
           break;
         case GeneratorList.multiplicativo:
           generatorForm = MultiplicativoWidget();
@@ -78,21 +83,27 @@ class _MyHomePageState extends State<MyHomePage> {
               });
             },
           ),
-          if (_numbers.isNotEmpty)
-            Expanded(
-              child: ListView(
-                children: [
-                  NumberList(numbers: _numbers),
-                ],
-              ),
-            )
-          else
-            Expanded(
+          Consumer<GeneratorState>(
+            child: Expanded(
               child: Center(
                 child: FaIcon(FontAwesomeIcons.dice,
                     size: 150, color: Colors.grey.shade300),
               ),
-            )
+            ),
+            builder: (context, value, child) {
+              if (value.numbers.isNotEmpty) {
+                return Expanded(
+                  child: ListView(
+                    children: const [
+                      NumberList(),
+                    ],
+                  ),
+                );
+              } else {
+                return child!;
+              }
+            },
+          )
         ]));
   }
 }

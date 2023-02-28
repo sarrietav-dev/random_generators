@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
 import 'package:random_generators/modules/generators/generators/mixto.dart';
 import 'package:random_generators/validators/validators.dart';
 
-class MixtoWidget extends GeneratorFormWidget {
-  MixtoWidget({super.key});
+class MixtoWidget extends StatefulWidget {
+  const MixtoWidget({super.key});
 
+  @override
+  State<MixtoWidget> createState() => _MixtoWidgetState();
+}
+
+class _MixtoWidgetState extends State<MixtoWidget> {
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
 
+  @override
   final TextEditingController seedController = TextEditingController();
+
   get seed => int.parse(seedController.text);
 
   final TextEditingController aValueController = TextEditingController();
+
   get a => int.parse(aValueController.text);
 
   final TextEditingController cValueController = TextEditingController();
+
   get c => int.parse(cValueController.text);
 
   final TextEditingController mValueController = TextEditingController();
+
   get m => int.parse(mValueController.text);
 
   @override
