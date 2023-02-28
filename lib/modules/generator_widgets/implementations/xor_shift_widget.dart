@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:random_generators/components/generator_form_template.dart';
+import 'package:random_generators/components/warning.dart';
 import 'package:random_generators/modules/generators/generators/xor_shift.dart';
 
 class XorShiftWidget extends GeneratorFormTemplate {
@@ -29,7 +30,7 @@ class XorShiftWidget extends GeneratorFormTemplate {
   }
 
   _getKFormField() {
-    String warning = "";
+    List<String> warnings = [];
 
     return Column(
       children: [
@@ -40,28 +41,18 @@ class XorShiftWidget extends GeneratorFormTemplate {
               return "Ingrese un valor";
             }
             if (int.parse(value) > 2 ^ 32) {
-              warning = "No puede ser mayor a 2^32";
+              warnings.add("No puede ser mayor a 2^32");
             }
             return null;
           },
-          inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly
-          ],
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: "K",
               hintText: "Ingrese k"),
         ),
-        const SizedBox(height: 5),
-        if (warning.isNotEmpty)
-          Row(
-            children: [
-              const Icon(Icons.warning_amber_rounded,
-                  color: Colors.amber, size: 20),
-              const SizedBox(width: 7.5),
-              Text(warning, style: const TextStyle(color: Colors.amber)),
-            ],
-          )
+        if (warnings.isNotEmpty)
+          for (var warning in warnings) Warning(message: warning),
       ],
     );
   }
