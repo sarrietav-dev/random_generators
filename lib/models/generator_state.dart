@@ -42,7 +42,6 @@ class GeneratorState extends ChangeNotifier {
   void setNumbers(List<int> newNumbers) {
     numbers = newNumbers;
     notifyListeners();
-    print(numbers);
   }
 }
 

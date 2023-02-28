@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:random_generators/components/sidebar.dart';
 import 'package:random_generators/models/generator_state.dart';
 
 class GeneratorFormField {

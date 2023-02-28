@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:random_generators/components/number_list.dart';
-import 'package:random_generators/modules/generator_widgets/implementations/multiplicativo_widget.dart';
 
 import 'components/sidebar.dart';
-import 'models/generator_list.dart';
 import 'models/generator_state.dart';
-import 'modules/generator_widgets/implementations/blum_blum_shub_widget.dart';
 
 void main(List<String> args) {
   runApp(ChangeNotifierProvider(
@@ -43,7 +40,7 @@ class MyHomePage extends StatelessWidget {
           title: Text(title),
         ),
         body: Row(children: [
-          Sidebar(),
+          const Sidebar(),
           Consumer<GeneratorState>(
             child: Expanded(
               child: Center(

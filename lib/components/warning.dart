@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Warning extends StatelessWidget {
   final String message;
 
-  const Warning({required this.message});
+  const Warning({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {

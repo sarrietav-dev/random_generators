@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:random_generators/models/generator_list.dart';
 import 'package:random_generators/models/generator_state.dart';
 import 'package:random_generators/modules/excel/excel_file_builder.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:random_generators/modules/generator_widgets/implementations/xor_shift_widget.dart';
 
 class Sidebar extends StatelessWidget {
-  Sidebar();
+  const Sidebar({super.key});
 
   @override
   Widget build(BuildContext context) {
