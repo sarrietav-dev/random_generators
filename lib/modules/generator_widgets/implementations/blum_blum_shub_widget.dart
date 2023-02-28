@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:random_generators/components/generator_form_template.dart';
 import 'package:random_generators/modules/generators/generators/blum_blum_shub.dart';
 
@@ -22,6 +23,7 @@ class BlumBlumShubWidget extends GeneratorFormTemplate {
       children: [
         TextFormField(
           controller: seedController,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: "Semilla",
@@ -36,6 +38,7 @@ class BlumBlumShubWidget extends GeneratorFormTemplate {
       children: [
         TextFormField(
           controller: pController,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: "P",
@@ -50,6 +53,7 @@ class BlumBlumShubWidget extends GeneratorFormTemplate {
       children: [
         TextFormField(
           controller: qController,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: "Q",
@@ -64,6 +68,7 @@ class BlumBlumShubWidget extends GeneratorFormTemplate {
       children: [
         TextFormField(
           controller: kController,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: "K",
@@ -88,11 +93,9 @@ class BlumBlumShubWidget extends GeneratorFormTemplate {
     var bbs = BlumBlumShub(p: p, q: q, seed: seed);
     return List.generate(100, (index) => bbs.nextInt());
   }
-  
+
   @override
   List<String> getWarnings(BuildContext context) {
-    // TODO: implement getWarnings
-    throw UnimplementedError();
+    return [];
   }
-  
 }

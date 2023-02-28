@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:random_generators/components/generator_form_template.dart';
 
 import '../../generators/generators/middle_squared.dart';
@@ -14,6 +15,7 @@ class MiddleSquaredWidget extends GeneratorFormTemplate {
       children: [
         TextFormField(
           controller: seedController,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: "Semilla",

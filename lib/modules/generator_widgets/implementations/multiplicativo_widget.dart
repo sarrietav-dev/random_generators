@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:random_generators/components/generator_form_template.dart';
 import 'package:random_generators/models/generator_state.dart';
@@ -39,6 +40,7 @@ class MultiplicativoWidget extends GeneratorFormTemplate {
         return null;
       },
       controller: seedController,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       decoration: const InputDecoration(
           border: OutlineInputBorder(),
           labelText: "Semilla",
@@ -70,6 +72,7 @@ class MultiplicativoWidget extends GeneratorFormTemplate {
         return null;
       },
       controller: aValueController,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       decoration: const InputDecoration(
           border: OutlineInputBorder(),
           labelText: "a",
@@ -105,6 +108,7 @@ class MultiplicativoWidget extends GeneratorFormTemplate {
         return null;
       },
       controller: mValueController,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       decoration: const InputDecoration(
           border: OutlineInputBorder(),
           labelText: "m",
