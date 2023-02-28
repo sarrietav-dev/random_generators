@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:random_generators/components/generator_form_template.dart';
 import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
 import 'package:random_generators/modules/generators/generators/blum_blum_shub.dart';
 
-class BlumBlumShubWidget extends GeneratorFormWidget {
+class BlumBlumShubWidget extends GeneratorFormTemplate {
   BlumBlumShubWidget({super.key});
 
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
@@ -19,55 +20,76 @@ class BlumBlumShubWidget extends GeneratorFormWidget {
   final TextEditingController kController = TextEditingController();
   get k => int.parse(kController.text);
 
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-        key: _formState,
-        child: ListView(
-          children: [
-            Wrap(
-              runSpacing: 15,
-              children: [
-                TextFormField(
-                  controller: seedController,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Semilla",
-                      hintText: "Ingrese la semilla"),
-                ),
-                TextFormField(
-                  controller: pController,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "P",
-                      hintText: "Ingrese p"),
-                ),
-                TextFormField(
-                  controller: qController,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "q",
-                      hintText: "Ingrese q"),
-                ),
-                TextFormField(
-                  controller: kController,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "k",
-                      hintText: "Ingrese k"),
-                ),
-              ],
-            ),
-          ],
-        ));
+  _buildSeedFormField() {
+    return Column(
+      children: [
+        TextFormField(
+          controller: seedController,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "Semilla",
+              hintText: "Ingrese la semilla"),
+        ),
+      ],
+    );
+  }
+
+  _buildPFormField() {
+    return Column(
+      children: [
+        TextFormField(
+          controller: pController,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "P",
+              hintText: "Ingrese p"),
+        ),
+      ],
+    );
+  }
+
+  _buildQFormField() {
+    return Column(
+      children: [
+        TextFormField(
+          controller: qController,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "Q",
+              hintText: "Ingrese q"),
+        ),
+      ],
+    );
+  }
+
+  _buildKFormField() {
+    return Column(
+      children: [
+        TextFormField(
+          controller: kController,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "K",
+              hintText: "Ingrese k"),
+        ),
+      ],
+    );
   }
 
   @override
-  List<int> getNumbers() {
+  List<GeneratorFormField> get formFields {
+    return [
+      GeneratorFormField(
+          fieldName: "Semilla", formField: _buildSeedFormField()),
+      GeneratorFormField(fieldName: "P", formField: _buildPFormField()),
+      GeneratorFormField(fieldName: "Q", formField: _buildQFormField()),
+      GeneratorFormField(fieldName: "K", formField: _buildKFormField()),
+    ];
+  }
+
+  @override
+  List<int> get numbers {
     var bbs = BlumBlumShub(p: p, q: q, seed: seed);
     return List.generate(100, (index) => bbs.nextInt());
   }
-
-  @override
-  GlobalKey<FormState> get formState => _formState;
 }
