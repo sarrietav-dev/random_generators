@@ -67,4 +67,10 @@ class XorShiftWidget extends GeneratorFormTemplate {
         XorShift(n: seedController.text.length, seed: seed, k: k, taps: [1]);
     return List.generate(100, (index) => xorShift.nextNumber());
   }
+
+  @override
+  List<String> getWarnings(BuildContext context) {
+    // TODO: implement getWarnings
+    throw UnimplementedError();
+  }
 }

@@ -68,4 +68,10 @@ class MultiplicativoWidget extends GeneratorFormTemplate {
     var mixto = Multiplicativo(a: a, m: m, seed: seed);
     return List.generate(100, (index) => mixto.nextNumber());
   }
+
+  @override
+  List<String> getWarnings(BuildContext context) {
+    // TODO: implement getWarnings
+    throw UnimplementedError();
+  }
 }

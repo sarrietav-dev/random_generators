@@ -88,4 +88,11 @@ class BlumBlumShubWidget extends GeneratorFormTemplate {
     var bbs = BlumBlumShub(p: p, q: q, seed: seed);
     return List.generate(100, (index) => bbs.nextInt());
   }
+  
+  @override
+  List<String> getWarnings(BuildContext context) {
+    // TODO: implement getWarnings
+    throw UnimplementedError();
+  }
+  
 }

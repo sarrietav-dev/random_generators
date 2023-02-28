@@ -10,6 +10,7 @@ import 'package:random_generators/modules/generators/generator.dart';
 class GeneratorState extends ChangeNotifier {
   GeneratorFormTemplate? currentGenerator;
   List<int> numbers = [];
+  List<String> warnings = [];
 
   List<String> get generatorNames =>
       ["XorShift", "Mixto", "Multiplicativo", "Blum Blum Shub"];
@@ -32,6 +33,20 @@ class GeneratorState extends ChangeNotifier {
   void changeGenerator(int index) {
     currentGenerator = _GeneratorTemplateFactory.getGeneratorTemplate(
         _mapIntToGenerator(index));
+
+    clearWarnings();
+    clearNumbers();
+
+    notifyListeners();
+  }
+
+  void addWarnings(List<String> newWarnings) {
+    warnings.addAll(newWarnings);
+    notifyListeners();
+  }
+
+  void clearWarnings() {
+    warnings = [];
     notifyListeners();
   }
 
@@ -41,6 +56,11 @@ class GeneratorState extends ChangeNotifier {
 
   void setNumbers(List<int> newNumbers) {
     numbers = newNumbers;
+    notifyListeners();
+  }
+
+  void clearNumbers() {
+    numbers = [];
     notifyListeners();
   }
 }

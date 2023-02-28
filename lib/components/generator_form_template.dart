@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:random_generators/components/warning.dart';
 import 'package:random_generators/models/generator_state.dart';
 
 abstract class GeneratorFormTemplate extends StatefulWidget {
@@ -7,6 +8,7 @@ abstract class GeneratorFormTemplate extends StatefulWidget {
 
   List<Widget> get formFields;
   List<int> get numbers;
+  List<String> getWarnings(BuildContext context);
 
   @override
   State<GeneratorFormTemplate> createState() => _GeneratorFormTemplateState();
@@ -14,7 +16,6 @@ abstract class GeneratorFormTemplate extends StatefulWidget {
 
 class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
-
   _buildForm() {
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 0),
@@ -35,12 +36,29 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
 
   @override
   Widget build(BuildContext context) {
+    var warnings = Provider.of<GeneratorState>(context).warnings;
+
     return Column(
       children: [
         Expanded(child: _buildForm()),
+        if (warnings.isNotEmpty)
+          SizedBox(
+            height: 150,
+            child: ListView(
+              children: [
+                for (var warning in warnings) Warning(message: warning),
+              ],
+            ),
+          ),
         GenerateButton(
           onPressed: () {
-            if (!_formState.currentState!.validate()) return;
+            var isValid = _formState.currentState!.validate();
+            warnings = widget.getWarnings(context);
+            if (!isValid) {
+              setState(() {
+                Provider.of<GeneratorState>(context).addWarnings(warnings);
+              });
+            }
 
             var numbers = widget.numbers;
 
