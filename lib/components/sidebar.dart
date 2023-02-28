@@ -178,3 +178,41 @@ class Sidebar extends StatelessWidget {
     );
   }
 }
+
+class _Dropdown extends StatelessWidget {
+  const _Dropdown({required this.generatorNames, required this.child});
+
+  final List<String> generatorNames;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            DropdownMenu(
+                onSelected: (value) {
+                  Provider.of<GeneratorState>(context, listen: false);
+                },
+                label: const Text("Generador"),
+                dropdownMenuEntries: [
+                  for (int i = 0; i < generatorNames.length; i++)
+                    DropdownMenuEntry(label: generatorNames[i], value: i),
+                ]),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Divider(),
+            ),
+            if (child != null)
+              Expanded(child: child!)
+            else
+              const Text("Seleccione un generador"),
+          ],
+        ),
+      ),
+    );
+  }
+}
