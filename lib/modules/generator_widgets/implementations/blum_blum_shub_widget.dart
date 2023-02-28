@@ -6,8 +6,6 @@ import 'package:random_generators/modules/generators/generators/blum_blum_shub.d
 class BlumBlumShubWidget extends GeneratorFormTemplate {
   BlumBlumShubWidget({super.key});
 
-  final GlobalKey<FormState> _formState = GlobalKey<FormState>();
-
   final TextEditingController seedController = TextEditingController();
   get seed => int.parse(seedController.text);
 
