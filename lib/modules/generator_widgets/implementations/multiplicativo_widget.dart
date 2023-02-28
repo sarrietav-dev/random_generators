@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:random_generators/components/generator_form_template.dart';
 import 'package:random_generators/modules/generator_widgets/generator_widget_factory.dart';
 import 'package:random_generators/modules/generators/generators/multiplicativo.dart';
 
-class MultiplicativoWidget extends GeneratorFormWidget {
+class MultiplicativoWidget extends GeneratorFormTemplate {
   MultiplicativoWidget({super.key});
-
-  final GlobalKey<FormState> _formState = GlobalKey<FormState>();
 
   final TextEditingController seedController = TextEditingController();
   get seed => int.parse(seedController.text);
@@ -16,48 +15,58 @@ class MultiplicativoWidget extends GeneratorFormWidget {
   final TextEditingController mValueController = TextEditingController();
   get m => int.parse(mValueController.text);
 
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formState,
-        child: ListView(
+  _buildSeedFormField() {
+    return Column(
       children: [
-        Wrap(
-          runSpacing: 15,
-          children: [
-            TextFormField(
-              controller: seedController,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Semilla",
-                  hintText: "Ingrese la semilla"),
-            ),
-            TextFormField(
-              controller: aValueController,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "a",
-                  hintText: "Ingrese el valor a"),
-            ),
-            TextFormField(
-              controller: mValueController,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "m",
-                  hintText: "Ingrese el valor m"),
-            ),
-          ],
+        TextFormField(
+          controller: seedController,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "Semilla",
+              hintText: "Ingrese la semilla"),
         ),
       ],
-    ));
+    );
+  }
+
+  _buildAFormField() {
+    return Column(
+      children: [
+        TextFormField(
+          controller: aValueController,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "a",
+              hintText: "Ingrese el valor a"),
+        ),
+      ],
+    );
+  }
+
+  _buildMFormField() {
+    return Column(
+      children: [
+        TextFormField(
+          controller: mValueController,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "m",
+              hintText: "Ingrese el valor m"),
+        ),
+      ],
+    );
   }
 
   @override
-  List<int> getNumbers() {
+  List<GeneratorFormField> get formFields => [
+        GeneratorFormField(fieldName: "", formField: _buildSeedFormField()),
+        GeneratorFormField(fieldName: "", formField: _buildAFormField()),
+        GeneratorFormField(fieldName: "", formField: _buildMFormField()),
+      ];
+
+  @override
+  List<int> get numbers {
     var mixto = Multiplicativo(a: a, m: m, seed: seed);
     return List.generate(100, (index) => mixto.nextNumber());
   }
-
-  @override
-  GlobalKey<FormState> get formState => _formState;
 }
