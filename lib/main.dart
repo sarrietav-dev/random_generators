@@ -55,8 +55,8 @@ class MyHomePage extends StatelessWidget {
               if (value.numbers.isNotEmpty) {
                 return Expanded(
                   child: ListView(
-                    children: const [
-                      NumberList(),
+                    children: [
+                      NumberList(numbers: value.numbers),
                     ],
                   ),
                 );
