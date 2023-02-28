@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:random_generators/components/generator_form_template.dart';
 
 import '../../generators/generators/lagged_fib.dart';
@@ -21,6 +22,17 @@ class LaggedFibonacciWidget extends GeneratorFormTemplate {
       children: [
         TextFormField(
           controller: seedController,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Ingrese un valor";
+            }
+
+            if (value.split("").length < 7) {
+              return "La semilla debe tener al menos 7 dígitos";
+            }
+            return null;
+          },
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: "Semilla",
@@ -35,6 +47,17 @@ class LaggedFibonacciWidget extends GeneratorFormTemplate {
       children: [
         TextFormField(
           controller: mValueController,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Ingrese un valor";
+            }
+
+            if (int.parse(value) < 2) {
+              return "El valor de m debe ser mayor a 1";
+            }
+            return null;
+          },
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: "m",
