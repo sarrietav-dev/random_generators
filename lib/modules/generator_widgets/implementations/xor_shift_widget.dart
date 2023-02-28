@@ -6,6 +6,9 @@ import '../generator_widget_factory.dart';
 
 class XorShiftWidget extends GeneratorFormWidget {
   XorShiftWidget({super.key});
+
+  final GlobalKey<FormState> _formState = GlobalKey<FormState>();
+
   final TextEditingController seedController = TextEditingController();
   get seed => int.parse(seedController.text, radix: 2);
 
@@ -15,32 +18,33 @@ class XorShiftWidget extends GeneratorFormWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
+        key: _formState,
         child: ListView(
-      children: [
-        Wrap(
-          runSpacing: 15,
           children: [
-            TextFormField(
-              controller: seedController,
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r"[01]")),
+            Wrap(
+              runSpacing: 15,
+              children: [
+                TextFormField(
+                  controller: seedController,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r"[01]")),
+                  ],
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Semilla",
+                      hintText: "Ingrese la semilla"),
+                ),
+                TextFormField(
+                  controller: kController,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "K",
+                      hintText: "Ingrese k"),
+                ),
               ],
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Semilla",
-                  hintText: "Ingrese la semilla"),
-            ),
-            TextFormField(
-              controller: kController,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "K",
-                  hintText: "Ingrese k"),
             ),
           ],
-        ),
-      ],
-    ));
+        ));
   }
 
   @override
@@ -49,4 +53,7 @@ class XorShiftWidget extends GeneratorFormWidget {
         XorShift(n: seedController.text.length, seed: seed, k: k, taps: [1]);
     return List.generate(100, (index) => xorShift.nextNumber());
   }
+
+  @override
+  GlobalKey<FormState> get formState => _formState;
 }

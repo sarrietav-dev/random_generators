@@ -5,8 +5,9 @@ import 'package:random_generators/modules/generators/generators/multiplicativo.d
 class MultiplicativoWidget extends GeneratorFormWidget {
   MultiplicativoWidget({super.key});
 
-  final TextEditingController seedController = TextEditingController();
+  final GlobalKey<FormState> _formState = GlobalKey<FormState>();
 
+  final TextEditingController seedController = TextEditingController();
   get seed => int.parse(seedController.text);
 
   final TextEditingController aValueController = TextEditingController();
@@ -18,6 +19,7 @@ class MultiplicativoWidget extends GeneratorFormWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formState,
         child: ListView(
       children: [
         Wrap(
@@ -55,4 +57,7 @@ class MultiplicativoWidget extends GeneratorFormWidget {
     var mixto = Multiplicativo(a: a, m: m, seed: seed);
     return List.generate(100, (index) => mixto.nextNumber());
   }
+
+  @override
+  GlobalKey<FormState> get formState => _formState;
 }
