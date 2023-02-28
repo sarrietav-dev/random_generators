@@ -152,6 +152,10 @@ class Sidebar extends StatelessWidget {
                           );
                           return;
                         }
+                        var formKey = generatorForm?.formState;
+
+                        if (formKey == null) return;
+                        if (!formKey.currentState!.validate()) return;
                         var numbers = generatorForm!.getNumbers();
                         onGenerate(numbers);
                       },

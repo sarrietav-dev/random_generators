@@ -5,7 +5,4 @@ abstract class GeneratorFormWidget extends StatelessWidget {
 
   List<int> getNumbers();
   GlobalKey<FormState> get formState;
-
-  @override
-  Widget build(BuildContext context);
 }
