@@ -15,9 +15,6 @@ class BlumBlumShubWidget extends GeneratorFormTemplate {
   final TextEditingController qController = TextEditingController();
   get q => int.parse(qController.text);
 
-  final TextEditingController kController = TextEditingController();
-  get k => int.parse(kController.text);
-
   _buildSeedFormField() {
     return Column(
       children: [
@@ -63,28 +60,12 @@ class BlumBlumShubWidget extends GeneratorFormTemplate {
     );
   }
 
-  _buildKFormField() {
-    return Column(
-      children: [
-        TextFormField(
-          controller: kController,
-          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "K",
-              hintText: "Ingrese k"),
-        ),
-      ],
-    );
-  }
-
   @override
   List<Widget> get formFields {
     return [
       _buildSeedFormField(),
       _buildPFormField(),
       _buildQFormField(),
-      _buildKFormField(),
     ];
   }
 
