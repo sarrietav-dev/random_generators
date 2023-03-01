@@ -15,7 +15,8 @@ class BlumBlumShub {
   }
 
   int _next() {
-    int x = seed * seed % (p * q);
+    var n = p * q;
+    int x = seed * seed % n;
     seed = x;
     return x;
   }
@@ -26,14 +27,7 @@ class BlumBlumShub {
   }
 
   int nextInt() {
-    var number = 0;
-
-    for (var i = 0; i < k; i++) {
-      number = number << 1;
-      number |= random();
-    }
-
-    return number;
+    return _next();
   }
 
   int generate(int n) {
