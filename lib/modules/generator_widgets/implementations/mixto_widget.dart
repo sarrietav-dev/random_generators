@@ -70,6 +70,16 @@ class MixtoWidget extends GeneratorFormTemplate {
 
         if (parsedValue % 2 == 0) {
           _warnings.add('El valor "a" no es impar');
+
+          if (parsedValue % 3 == 0) {
+            _warnings
+                .add('El valor "a" no cumple con la condición (a % 3 != 0)');
+          }
+
+          if (parsedValue % 5 == 0) {
+            _warnings
+                .add('El valor "a" no cumple con la condición (a % 5 != 0)');
+          }
         }
 
         if (!Validators.isPrime(parsedValue)) {
