@@ -9,7 +9,7 @@ class ExcelFileBuilder {
   ExcelFileBuilder(
       {required this.randomNumbers, this.filePath = 'random_numbers.xlsx'});
 
-  build() {
+  Excel buildExcel() {
     final excel = Excel.createExcel();
 
     final Sheet sheetObject = excel['Sheet1'];
@@ -19,7 +19,13 @@ class ExcelFileBuilder {
           randomNumbers[i];
     }
 
-    final List<int>? bytes = excel.encode();
+    return excel;
+  }
+
+  build() {
+    final excel = buildExcel();
+
+    final bytes = excel.encode();
 
     File(filePath).writeAsBytes(bytes!);
   }
