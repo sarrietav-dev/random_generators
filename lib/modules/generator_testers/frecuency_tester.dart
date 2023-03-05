@@ -1,11 +1,14 @@
 import 'dart:math';
 
+import 'package:random_generators/helpers/p_value_map.dart';
+
 import 'abstraction/generator_tester.dart';
 
 class FrecuencyTester implements GeneratorTester {
   final List<double> numbers;
   final int intervals;
-  final double tolerance = 1.96;
+  get tolerance => pValueMap[intervals - 1];
+  get intervalSize => 1 / intervals;
 
   List<double> get expectedFrecuencies {
     final expectedFrecuency = N / intervals;
@@ -18,10 +21,9 @@ class FrecuencyTester implements GeneratorTester {
 
   Map<double, int> get observedFrecuencies {
     Map<double, int> frecuencyMap = {};
-    final intervalSize = N / intervals;
     final numbersCopy = List<double>.from(numbers);
 
-    for (var i = intervalSize; i <= N; i += intervalSize) {
+    for (var i = intervalSize; i <= 1; i += intervalSize) {
       for (int j = 0; j < numbersCopy.length; j++) {
         if (numbersCopy[j] <= i) {
           frecuencyMap[i] = (frecuencyMap[i] ?? 0) + 1;
@@ -41,9 +43,11 @@ class FrecuencyTester implements GeneratorTester {
 
     double sum = 0;
 
-    for (var i = 0; i < intervals; i++) {
+    for (var i = intervalSize, j = 0;
+        i <= 1 && j <= expectedFrecuencies.length;
+        i += intervalSize, j++) {
       final observed = observedFrecuencies[i] ?? 0;
-      final expected = expectedFrecuencies[i];
+      final expected = expectedFrecuencies[j];
 
       sum += pow(observed - expected, 2) / expected;
     }

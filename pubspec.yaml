@@ -41,6 +41,7 @@ dependencies:
   file_picker: ^5.2.5
   flutter_launcher_icons: ^0.12.0
   provider: ^6.0.5
+  matcher: ^0.12.13
 
 dev_dependencies:
   flutter_test:
