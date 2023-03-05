@@ -11,12 +11,12 @@ class MeanTester implements GeneratorTester {
 
   MeanTester({required this.numbers});
 
-  _getStatistical() {
+  getStatistical() {
     return ((mean - 0.5) * sqrt(N)) / variance;
   }
 
   @override
   bool test() {
-    return _getStatistical().abs() < tolerance;
+    return getStatistical().abs() < tolerance;
   }
 }
