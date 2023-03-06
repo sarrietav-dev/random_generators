@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:random_generators/components/number_list.dart';
+import 'package:random_generators/modules/stat_tester_widget/stat_tester_widget.dart';
 
 import 'components/sidebar.dart';
 import 'models/generator_state.dart';
@@ -38,6 +39,48 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(title),
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.green,
+          child: const Icon(Icons.science),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text("Importar números"),
+                  content: const Text(
+                      "Deseas importar los números o usar generados?"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => StatTesterWidget(
+                                  numbers: List.filled(100, 0),
+                                ),
+                              ));
+                        },
+                        child: const Text("Generados")),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => StatTesterWidget(
+                                  numbers: List.filled(100, 0),
+                                ),
+                              ));
+                        },
+                        child: const Text("Importar de Excel")),
+                  ],
+                );
+              },
+            );
+          },
         ),
         body: Row(children: [
           const Sidebar(),
