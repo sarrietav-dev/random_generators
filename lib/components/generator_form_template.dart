@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:random_generators/components/warning.dart';
+import 'package:random_generators/helpers/period_proxy.dart';
 import 'package:random_generators/models/generator_state.dart';
 
 abstract class GeneratorFormTemplate extends StatefulWidget {
@@ -60,7 +61,7 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
               });
             }
 
-            var numbers = widget.numbers;
+            var numbers = periodProxy(widget.numbers);
 
             Provider.of<GeneratorState>(context, listen: false)
                 .setNumbers(numbers);
