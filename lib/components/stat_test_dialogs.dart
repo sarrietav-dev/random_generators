@@ -98,7 +98,7 @@ class InvalidNumberFormatDialog extends StatelessWidget {
     return AlertDialog(
       title: const Text("Advertencia"),
       content: const Text("Los números no están entre 0 y 1.\n"
-          "Esto puede causar errores en los test. "
+          "Esto puede causar errores en los test. \n"
           "Se puede continuar realizando una conversión dividiendo todos los números entre el mayor de ellos.\n"
           "Si no se desea realizar la conversión, se puede cancelar el test o continuar"),
       actions: [
