@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class NumberList extends StatelessWidget {
+class NumberList<T> extends StatelessWidget {
   const NumberList({super.key, required this.numbers});
 
-  final List<int> numbers;
+  final List<T> numbers;
 
   @override
   Widget build(BuildContext context) {

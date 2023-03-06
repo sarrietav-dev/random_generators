@@ -4,7 +4,7 @@ import 'package:random_generators/components/number_list.dart';
 class StatTesterWidget extends StatelessWidget {
   const StatTesterWidget({super.key, required this.numbers});
 
-  final List<int> numbers;
+  final List<double> numbers;
 
   @override
   Widget build(BuildContext context) {
