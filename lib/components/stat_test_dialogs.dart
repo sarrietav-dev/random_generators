@@ -107,7 +107,7 @@ class InvalidNumberFormatDialog extends StatelessWidget {
               var max = numbers.reduce(
                   (value, element) => value > element ? value : element);
 
-              var numbersDivided = numbers.map((e) => e / max).toList();
+              var numbersDivided = numbers.map((e) => e / (max + 1)).toList();
 
               Navigator.pop(context);
               Navigator.push(
