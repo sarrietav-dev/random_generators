@@ -29,32 +29,27 @@ class ImportDialog extends StatelessWidget {
       actions: [
         TextButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) {
-                  var numbers =
-                      Provider.of<GeneratorState>(context, listen: false)
-                          .numbers;
-
-                  var numbersDouble = numbers.map((e) => e.toDouble()).toList();
-
-                  if (!areNumbersBetweenZeroAndOne(numbersDouble)) {
-                    Navigator.pop(context);
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return InvalidNumberFormatDialog(
-                          numbers: numbersDouble,
-                        );
-                      },
+              var numbers = Provider.of<GeneratorState>(context, listen: false)
+                  .numbers
+                  .map((e) => e.toDouble())
+                  .toList();
+              if (!areNumbersBetweenZeroAndOne(numbers)) {
+                Navigator.pop(context);
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return InvalidNumberFormatDialog(
+                      numbers: numbers,
                     );
-                  } else {
-                    Navigator.pop(context);
-                    return StatTesterWidget(numbers: numbersDouble);
-                  }
-
-                  return StatTesterWidget(numbers: numbersDouble);
-                },
-              ));
+                  },
+                );
+              } else {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return StatTesterWidget(numbers: numbers);
+                  },
+                ));
+              }
             },
             child: const Text("Generados")),
         TextButton(
