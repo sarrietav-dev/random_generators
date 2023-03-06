@@ -10,14 +10,15 @@ class ExcelReader {
   ExcelReader.fromPath({required String path})
       : book = Excel.decodeBytes(File(path).readAsBytesSync());
 
-  List<int> getNumbers() {
+  List<double> getNumbers() {
     final Sheet sheetObject = book['Sheet1'];
 
-    final List<int> numbers = [];
+    final List<double> numbers = [];
 
     for (int i = 0; i < sheetObject.maxRows; i++) {
-      final int? number =
-          sheetObject.cell(CellIndex.indexByString('A${i + 1}')).value;
+      var value = sheetObject.cell(CellIndex.indexByString('A${i + 1}')).value;
+
+      final double? number = value is int ? value.toDouble() : value;
 
       if (number != null) {
         numbers.add(number);
