@@ -11,6 +11,7 @@ class MeanTester implements GeneratorTester {
 
   MeanTester({required this.numbers});
 
+  @override
   getStatistical() {
     return ((mean - 0.5) * sqrt(N)) / variance;
   }

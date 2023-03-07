@@ -37,6 +37,7 @@ class FrecuencyTester implements GeneratorTester {
 
   FrecuencyTester({required this.intervals, required this.numbers});
 
+  @override
   double getStatistical() {
     var observedFrecuencies = this.observedFrecuencies;
     var expectedFrecuencies = this.expectedFrecuencies;
@@ -58,5 +59,8 @@ class FrecuencyTester implements GeneratorTester {
   // Todo: set tolerance to a number in the table
 
   @override
-  bool test() => getStatistical() < tolerance;
+  bool test() {
+    var statistical = getStatistical();
+    return statistical < (tolerance ?? pValueMap[4]);
+  }
 }
