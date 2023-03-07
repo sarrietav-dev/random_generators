@@ -37,6 +37,7 @@ class FrecuencyTester implements GeneratorTester {
 
   FrecuencyTester({required this.intervals, required this.numbers});
 
+  @override
   double getStatistical() {
     var observedFrecuencies = this.observedFrecuencies;
     var expectedFrecuencies = this.expectedFrecuencies;
