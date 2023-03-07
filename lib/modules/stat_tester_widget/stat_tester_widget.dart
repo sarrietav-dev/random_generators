@@ -1,10 +1,31 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:random_generators/components/number_list.dart';
+import 'package:random_generators/modules/generator_testers/abstraction/generator_tester.dart';
+import 'package:random_generators/modules/generator_testers/frecuency_tester.dart';
+import 'package:random_generators/modules/generator_testers/mean_tester.dart';
+
+class _TestListItem {
+  _TestListItem({required this.title, required this.test});
+
+  final String title;
+  final GeneratorTester test;
+}
 
 class StatTesterWidget extends StatelessWidget {
-  const StatTesterWidget({super.key, required this.numbers});
+  StatTesterWidget({super.key, required this.numbers}) {
+    tests = [
+      _TestListItem(
+          title: "Prueba de promedio", test: MeanTester(numbers: numbers)),
+      _TestListItem(
+          title: "Prueba de frecuencias",
+          test: FrecuencyTester(numbers: numbers, intervals: 2))
+    ];
+  }
 
   final List<double> numbers;
+  List<_TestListItem> tests = [];
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +39,15 @@ class StatTesterWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                    child: TestCard(
-                        test: () => true, title: "Prueba del promedio")),
-                Expanded(
-                    child: TestCard(
-                        test: () => false, title: "Prueba de las frecuencias"))
-              ],
-            ),
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: tests
+                    .map((e) => Expanded(
+                          child: TestCard(
+                            test: e.test.test,
+                            title: e.title,
+                          ),
+                        ))
+                    .toList()),
           ),
         )
       ]),
