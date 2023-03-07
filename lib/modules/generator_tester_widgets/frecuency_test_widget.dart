@@ -89,10 +89,10 @@ class _FrecuencyTestWidgetState extends State<FrecuencyTestWidget> {
 
                       var intValue = int.parse(value);
 
-                      if (intValue <= 1 || intValue > 20) {
+                      if (intValue <= 1 || intValue > 21) {
                         setState(() {
                           helperText =
-                              "El numero de intervalos debe estar entre 2 y 20";
+                              "El numero de intervalos debe estar entre 2 y 21";
                           testResult = false;
                         });
                         return;
