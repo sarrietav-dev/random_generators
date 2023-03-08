@@ -56,7 +56,7 @@ class _FrecuencyTestWidgetState extends State<FrecuencyTestWidget> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 28.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text("Prueba de las frecuencias",
