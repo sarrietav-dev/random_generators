@@ -8,7 +8,7 @@ abstract class GeneratorFormTemplate extends StatefulWidget {
   const GeneratorFormTemplate({super.key});
 
   List<Widget> get formFields;
-  List<int> get numbers;
+  List<double> get numbers;
   List<String> getWarnings(BuildContext context);
 
   @override
@@ -63,8 +63,37 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
 
             var numbers = periodProxy(widget.numbers);
 
-            Provider.of<GeneratorState>(context, listen: false)
-                .setNumbers(numbers);
+            // Show AlertDialog that proposes to convert the numbers between 0 and 1 and returns a bool with the response
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text("Convertir a números entre 0 y 1"),
+                    content: const Text(
+                        "¿Desea convertir los números generados a números entre 0 y 1?"),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(false);
+                          },
+                          child: const Text("No")),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(true);
+                          },
+                          child: const Text("Sí")),
+                    ],
+                  );
+                }).then((value) {
+              if (value) {
+                var max = numbers.reduce(
+                    (value, element) => value > element ? value : element);
+
+                numbers = numbers.map((e) => e / (max + 1)).toList();
+                Provider.of<GeneratorState>(context, listen: false)
+                    .setNumbers(numbers);
+              }
+            });
           },
         )
       ],
