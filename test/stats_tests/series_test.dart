@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:random_generators/modules/generator_testers/seriest_tester.dart';
+import 'package:random_generators/modules/generator_testers/series_tester.dart';
 
 main() {
   group("Series test", () {

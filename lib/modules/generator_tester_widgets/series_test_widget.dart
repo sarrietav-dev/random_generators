@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:random_generators/modules/generator_tester_widgets/abstraction/generator_tester_widget.dart';
 import 'package:random_generators/modules/generator_testers/abstraction/generator_tester.dart';
-import 'package:random_generators/modules/generator_testers/seriest_tester.dart';
+import 'package:random_generators/modules/generator_testers/series_tester.dart';
 
 class SeriesTestWidget extends GeneratorTesterWidget {
   const SeriesTestWidget({super.key, required super.numbers});
