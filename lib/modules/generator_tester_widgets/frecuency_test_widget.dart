@@ -58,7 +58,7 @@ class _FrecuencyTestWidgetState extends State<FrecuencyTestWidget> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Prueba de promedio",
+                  const Text("Prueba de las frecuencias",
                       style: TextStyle(color: Colors.white, fontSize: 18)),
                     Expanded(
                     child: TextFormField(
