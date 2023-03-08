@@ -59,7 +59,7 @@ class _SeriesTestWidgetState extends State<SeriesTestWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text("Prueba de series",
-                      style: TextStyle(color: Colors.white, fontSize: 18)),
+                      style: TextStyle(color: Colors.white, fontSize: 20)),
                   TextFormField(
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     initialValue: intervalNumber.toString(),

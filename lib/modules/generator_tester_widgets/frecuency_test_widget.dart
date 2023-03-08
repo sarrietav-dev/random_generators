@@ -60,7 +60,7 @@ class _FrecuencyTestWidgetState extends State<FrecuencyTestWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text("Prueba de las frecuencias",
-                      style: TextStyle(color: Colors.white, fontSize: 18)),
+                      style: TextStyle(color: Colors.white, fontSize: 20)),
                   TextFormField(
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     initialValue: intervalNumber.toString(),
