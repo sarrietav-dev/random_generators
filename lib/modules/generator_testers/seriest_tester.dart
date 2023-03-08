@@ -53,19 +53,15 @@ class SeriesTester extends GeneratorTester {
       frecuencyMatrix = setFrecuencyOnMatrix(frecuencyMatrix, pair);
     }
 
-    var firstExpresion = pow(n, 2) / (n - 1);
-
     var sum = 0.0;
-    for (var i = 0; i < intervals; i++) {
-      double jSum = 0;
-      for (var j = 0; j < intervals; j++) {
-        jSum += pow(frecuencyMatrix[i][j] - ((n - 1) / pow(n, 2)), 2).toDouble();
+    for (var j = 0; j < intervals; j++) {
+      for (var i = 0; i < intervals; i++) {
+        sum += pow(frecuencyMatrix[i][j] - expectedFrecuency, 2) /
+            expectedFrecuency;
       }
-
-      sum += jSum;
     }
 
-    return firstExpresion * sum;
+    return sum;
   }
 
   @override
