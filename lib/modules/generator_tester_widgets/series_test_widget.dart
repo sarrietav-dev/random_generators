@@ -1,18 +1,20 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:random_generators/helpers/p_value_map.dart';
 import 'package:random_generators/modules/generator_tester_widgets/abstraction/generator_tester_widget.dart';
 import 'package:random_generators/modules/generator_testers/abstraction/generator_tester.dart';
-import 'package:random_generators/modules/generator_testers/frecuency_tester.dart';
+import 'package:random_generators/modules/generator_testers/seriest_tester.dart';
 
-class FrecuencyTestWidget extends GeneratorTesterWidget {
-  const FrecuencyTestWidget({super.key, required super.numbers});
+class SeriesTestWidget extends GeneratorTesterWidget {
+  const SeriesTestWidget({super.key, required super.numbers});
 
   @override
-  State<FrecuencyTestWidget> createState() => _FrecuencyTestWidgetState();
+  State<SeriesTestWidget> createState() => _SeriesTestWidgetState();
 }
 
-class _FrecuencyTestWidgetState extends State<FrecuencyTestWidget> {
+class _SeriesTestWidgetState extends State<SeriesTestWidget> {
   late GeneratorTester test;
   late bool testResult;
   double statistical = 0;
@@ -21,14 +23,13 @@ class _FrecuencyTestWidgetState extends State<FrecuencyTestWidget> {
 
   @override
   void initState() {
-    test = FrecuencyTester(numbers: widget.numbers, intervals: intervalNumber);
+    test = SeriesTester(numbers: widget.numbers, intervals: intervalNumber);
     testResult = test.test();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    statistical = test.getStatistical();
     return Card(
         color: widget.getColor(testResult),
         child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -59,7 +60,7 @@ class _FrecuencyTestWidgetState extends State<FrecuencyTestWidget> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Prueba de promedio",
+                  const Text("Prueba de series",
                       style: TextStyle(color: Colors.white, fontSize: 25)),
                   TextFormField(
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -85,10 +86,10 @@ class _FrecuencyTestWidgetState extends State<FrecuencyTestWidget> {
 
                       var intValue = int.parse(value);
 
-                      if (intValue <= 1 || intValue > 21) {
+                      if (intValue <= 1 || intValue > 10) {
                         setState(() {
                           helperText =
-                              "El numero de intervalos debe estar entre 2 y 21";
+                              "El numero de intervalos debe estar entre 2 y 10";
                           testResult = false;
                         });
                         return;
@@ -97,17 +98,16 @@ class _FrecuencyTestWidgetState extends State<FrecuencyTestWidget> {
                       intervalNumber = intValue;
 
                       setState(() {
-                        test = FrecuencyTester(
+                        test = SeriesTester(
                             numbers: widget.numbers, intervals: intervalNumber);
-
                         testResult = test.test();
 
                         if (testResult) {
                           helperText =
-                              "No se puede rechazar que los numeros sigan una distribución uniforme";
+                              "No se puede rechazar que los numeros sean independientes";
                         } else {
                           helperText =
-                              "Se puede rechazar que los numeros sigan una distribución uniforme";
+                              "Se puede rechazar que los numeros sean independientes";
                         }
                       });
                     },
