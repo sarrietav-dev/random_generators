@@ -1,11 +1,8 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:random_generators/components/number_list.dart';
 import 'package:random_generators/components/stat_test_dialogs.dart';
-import 'package:random_generators/modules/excel/excel_reader.dart';
-import 'package:random_generators/modules/stat_tester_widget/stat_tester_widget.dart';
 
 import 'components/sidebar.dart';
 import 'models/generator_state.dart';
