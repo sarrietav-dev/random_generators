@@ -121,9 +121,9 @@ class MultiplicativoWidget extends GeneratorFormTemplate {
       [_buildSeedInput(), _buildAValueInput(), _buildMValueInput()];
 
   @override
-  List<int> get numbers {
+  List<double> get numbers {
     var mixto = Multiplicativo(a: a, m: m, seed: seed);
-    return List.generate(100, (index) => mixto.nextNumber());
+    return List.generate(100, (index) => mixto.nextNumber().toDouble());
   }
 
   @override

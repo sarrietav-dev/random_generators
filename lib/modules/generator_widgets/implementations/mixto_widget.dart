@@ -184,9 +184,9 @@ class MixtoWidget extends GeneratorFormTemplate {
   }
 
   @override
-  List<int> get numbers {
+  List<double> get numbers {
     var mixto = Mixto(a: a, c: c, m: m, seed: seed);
-    return List.generate(100, (index) => mixto.nextNumber());
+    return List.generate(100, (index) => mixto.nextNumber().toDouble());
   }
 
   @override

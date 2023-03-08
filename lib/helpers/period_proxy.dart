@@ -1,4 +1,4 @@
-List<int> periodProxy(List<int> numbers) {
+List<double> periodProxy(List<double> numbers) {
   var firstNumber = numbers.first;
 
   var periodIndex =

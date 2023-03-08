@@ -70,9 +70,9 @@ class BlumBlumShubWidget extends GeneratorFormTemplate {
   }
 
   @override
-  List<int> get numbers {
+  List<double> get numbers {
     var bbs = BlumBlumShub(p: p, q: q, seed: seed);
-    return List.generate(100, (index) => bbs.nextInt());
+    return List.generate(100, (index) => bbs.nextInt().toDouble());
   }
 
   @override

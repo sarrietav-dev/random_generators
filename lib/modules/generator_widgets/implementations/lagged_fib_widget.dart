@@ -79,8 +79,8 @@ class LaggedFibonacciWidget extends GeneratorFormTemplate {
   }
 
   @override
-  List<int> get numbers {
+  List<double> get numbers {
     var lagFib = LaggedFibonacci(seed: seed, mod: m);
-    return List.generate(100, (index) => lagFib.nextNumber());
+    return List.generate(100, (index) => lagFib.nextNumber().toDouble());
   }
 }

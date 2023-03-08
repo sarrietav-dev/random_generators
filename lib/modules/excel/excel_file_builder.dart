@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:excel/excel.dart';
 
 class ExcelFileBuilder {
-  final List<int> randomNumbers;
+  final List<double> randomNumbers;
   String filePath;
 
   ExcelFileBuilder(

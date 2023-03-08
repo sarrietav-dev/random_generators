@@ -28,7 +28,7 @@ class Validators {
     return value % 8 == 5;
   }
 
-  static bool isGreaterThanValues(int m, List<int> a) {
+  static bool isGreaterThanValues(int m, List<double> a) {
     for (var num in a) {
       if (m <= num) {
         return false;

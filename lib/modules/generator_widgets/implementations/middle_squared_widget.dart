@@ -34,8 +34,8 @@ class MiddleSquaredWidget extends GeneratorFormTemplate {
   }
 
   @override
-  List<int> get numbers {
+  List<double> get numbers {
     var middleSquared = MiddleSquared(seed: seed);
-    return List.generate(100, (index) => middleSquared.nextNumber());
+    return List.generate(100, (index) => middleSquared.nextNumber().toDouble());
   }
 }

@@ -11,7 +11,7 @@ import 'package:random_generators/modules/generators/generator.dart';
 
 class GeneratorState extends ChangeNotifier {
   GeneratorFormTemplate? currentGenerator;
-  List<int> numbers = [];
+  List<double> numbers = [];
   List<String> warnings = [];
 
   List<String> get generatorNames => [
@@ -66,7 +66,7 @@ class GeneratorState extends ChangeNotifier {
     return null;
   }
 
-  void setNumbers(List<int> newNumbers) {
+  void setNumbers(List<double> newNumbers) {
     numbers = newNumbers;
     notifyListeners();
   }

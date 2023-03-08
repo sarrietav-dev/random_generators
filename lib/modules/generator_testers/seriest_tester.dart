@@ -20,18 +20,18 @@ class SeriesTester extends GeneratorTester {
 
   get n => numbers.length;
 
-  List<List<int>> get frecuencyMatrix {
-    var matrix = <List<int>>[];
+  List<List<double>> get frecuencyMatrix {
+    var matrix = <List<double>>[];
     for (var i = 0; i < intervals; i++) {
-      matrix.add(List<int>.filled(intervals, 0));
+      matrix.add(List<double>.filled(intervals, 0));
     }
     return matrix;
   }
 
   get expectedFrecuency => (n - 1) / pow(intervals, 2);
 
-  List<List<int>> setFrecuencyOnMatrix(
-      List<List<int>> matrix, List<double> pair) {
+  List<List<double>> setFrecuencyOnMatrix(
+      List<List<double>> matrix, List<double> pair) {
     var x = pair[0];
     var y = pair[1];
 

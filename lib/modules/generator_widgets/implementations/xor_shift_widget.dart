@@ -62,10 +62,10 @@ class XorShiftWidget extends GeneratorFormTemplate {
   List<Widget> get formFields => [_getSeedFormField(), _getKFormField()];
 
   @override
-  List<int> get numbers {
+  List<double> get numbers {
     final XorShift xorShift =
         XorShift(n: seedController.text.length, seed: seed, k: k, taps: [1]);
-    return List.generate(k * 100, (index) => xorShift.nextNumber());
+    return List.generate(k * 100, (index) => xorShift.nextNumber().toDouble());
   }
 
   @override
