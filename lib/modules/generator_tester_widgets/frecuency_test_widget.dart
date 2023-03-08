@@ -54,64 +54,63 @@ class _FrecuencyTestWidgetState extends State<FrecuencyTestWidget> {
           Expanded(
             flex: 3,
             child: Padding(
-              padding: const EdgeInsets.all(28.0),
+              padding: const EdgeInsets.symmetric(horizontal: 28.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text("Prueba de las frecuencias",
                       style: TextStyle(color: Colors.white, fontSize: 18)),
-                    Expanded(
-                    child: TextFormField(
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      initialValue: intervalNumber.toString(),
-                      decoration: InputDecoration(
-                          hintText: "Ingrese el numero de intervalos",
-                          helperText: helperText,
-                          border: const OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: widget.getColor(testResult)[700],
-                                  width: 3)),
-                          fillColor: widget.getColor(testResult)[50],
-                          filled: true),
-                      onChanged: (value) {
-                        if (value.isEmpty) {
-                          setState(() {
-                            testResult = false;
-                            helperText = "Ingrese el numero de intervalos";
-                          });
-                          return;
-                        }
-                  
-                        var intValue = int.parse(value);
-                  
-                        if (intValue <= 1 || intValue > 21) {
-                          setState(() {
-                            helperText =
-                                "El numero de intervalos debe estar entre 2 y 21";
-                            testResult = false;
-                          });
-                          return;
-                        }
-                  
-                        intervalNumber = intValue;
-                  
+                  TextFormField(
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    initialValue: intervalNumber.toString(),
+                    decoration: InputDecoration(
+                        hintText: "Ingrese el numero de intervalos",
+                        helperText: helperText,
+                        border: const OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: widget.getColor(testResult)[700],
+                                width: 3)),
+                        fillColor: widget.getColor(testResult)[50],
+                        filled: true),
+                    onChanged: (value) {
+                      if (value.isEmpty) {
                         setState(() {
-                          test = FrecuencyTester(
-                              numbers: widget.numbers, intervals: intervalNumber);
-                  
-                          testResult = test.test();
-                  
-                          if (testResult) {
-                            helperText =
-                                "No se puede rechazar que los numeros sigan una distribución uniforme";
-                          } else {
-                            helperText =
-                                "Se puede rechazar que los numeros sigan una distribución uniforme";
-                          }
+                          testResult = false;
+                          helperText = "Ingrese el numero de intervalos";
                         });
-                      },
-                    ),
+                        return;
+                      }
+            
+                      var intValue = int.parse(value);
+            
+                      if (intValue <= 1 || intValue > 21) {
+                        setState(() {
+                          helperText =
+                              "El numero de intervalos debe estar entre 2 y 21";
+                          testResult = false;
+                        });
+                        return;
+                      }
+            
+                      intervalNumber = intValue;
+            
+                      setState(() {
+                        test = FrecuencyTester(
+                            numbers: widget.numbers, intervals: intervalNumber);
+            
+                        testResult = test.test();
+            
+                        if (testResult) {
+                          helperText =
+                              "No se puede rechazar que los numeros sigan una distribución uniforme";
+                        } else {
+                          helperText =
+                              "Se puede rechazar que los numeros sigan una distribución uniforme";
+                        }
+                      });
+                    },
                   )
                 ],
               ),
