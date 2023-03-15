@@ -63,27 +63,7 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
 
             var numbers = periodProxy(widget.numbers);
 
-            showDialog<bool>(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: const Text("Convertir a números entre 0 y 1"),
-                    content: const Text(
-                        "¿Desea convertir los números generados a números entre 0 y 1?"),
-                    actions: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(false);
-                          },
-                          child: const Text("No")),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(true);
-                          },
-                          child: const Text("Sí")),
-                    ],
-                  );
-                }).then((value) {
+            showConvertFormatPopup(context).then((value) {
               if (value != null && value) {
                 convertNumbers(numbers, context);
               } else {
@@ -95,6 +75,30 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
         )
       ],
     );
+  }
+
+  Future<bool?> showConvertFormatPopup(BuildContext context) {
+    return showDialog<bool>(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Convertir a números entre 0 y 1"),
+            content: const Text(
+                "¿Desea convertir los números generados a números entre 0 y 1?"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                  child: const Text("No")),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                  child: const Text("Sí")),
+            ],
+          );
+        });
   }
 
   /// Converts the numbers to numbers between 0 and 1
