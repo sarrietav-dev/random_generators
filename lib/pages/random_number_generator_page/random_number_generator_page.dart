@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:random_generators/components/sidebar.dart';
+import 'package:random_generators/components/sidebar/sidebar.dart';
 import 'package:random_generators/pages/random_number_generator_page/components/random_numbers_panel.dart';
 
 import 'components/statistical_tests_fab.dart';
