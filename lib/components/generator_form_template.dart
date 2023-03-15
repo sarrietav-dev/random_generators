@@ -92,6 +92,9 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
                 numbers = numbers.map((e) => e / (max + 1)).toList();
                 Provider.of<GeneratorState>(context, listen: false)
                     .setNumbers(numbers);
+              } else {
+                Provider.of<GeneratorState>(context, listen: false)
+                    .setNumbers(numbers);
               }
             });
           },
