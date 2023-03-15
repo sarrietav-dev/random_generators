@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:random_generators/helpers/values_in_zero_and_one_checker.dart';
 import 'package:random_generators/models/generator_state.dart';
 import 'package:random_generators/modules/excel/excel_reader.dart';
-import 'package:random_generators/modules/stat_tester_widget/stat_tester_widget.dart';
+import 'package:random_generators/components/stat_tester_widget.dart';
 
 class ImportDialog extends StatelessWidget {
   const ImportDialog({
@@ -33,23 +33,8 @@ class ImportDialog extends StatelessWidget {
                   .numbers
                   .map((e) => e.toDouble())
                   .toList();
-              if (!areNumbersBetweenZeroAndOne(numbers)) {
-                Navigator.pop(context);
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return InvalidNumberFormatDialog(
-                      numbers: numbers,
-                    );
-                  },
-                );
-              } else {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) {
-                    return StatTesterWidget(numbers: numbers);
-                  },
-                ));
-              }
+
+              validateNumberFormatAndPushRoute(numbers, context);
             },
             child: const Text("Generados")),
         TextButton(
@@ -58,32 +43,41 @@ class ImportDialog extends StatelessWidget {
                 if (path != null) {
                   var numbers = ExcelReader.fromPath(path: path).getNumbers();
 
-                  if (!areNumbersBetweenZeroAndOne(numbers)) {
-                    Navigator.pop(context);
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return InvalidNumberFormatDialog(
-                          numbers: numbers,
-                        );
-                      },
-                    );
-                  } else {
-                    Navigator.pop(context);
-
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return StatTesterWidget(
-                          numbers: numbers,
-                        );
-                      },
-                    ));
-                  }
+                  validateNumberFormatAndPushRoute(numbers, context);
                 }
               });
             },
             child: const Text("Importar de Excel")),
       ],
+    );
+  }
+
+  void validateNumberFormatAndPushRoute(
+      List<double> numbers, BuildContext context) {
+    if (!areNumbersBetweenZeroAndOne(numbers)) {
+      showInvalidPopup(context, numbers);
+    } else {
+      showTestsPage(context, numbers);
+    }
+  }
+
+  void showTestsPage(BuildContext context, List<double> numbers) {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+        return StatTesterWidget(numbers: numbers);
+      },
+    ));
+  }
+
+  void showInvalidPopup(BuildContext context, List<double> numbers) {
+    Navigator.pop(context);
+    showDialog(
+      context: context,
+      builder: (context) {
+        return InvalidNumberFormatDialog(
+          numbers: numbers,
+        );
+      },
     );
   }
 }
@@ -104,18 +98,7 @@ class InvalidNumberFormatDialog extends StatelessWidget {
       actions: [
         TextButton(
             onPressed: () {
-              var max = numbers.reduce(
-                  (value, element) => value > element ? value : element);
-
-              var numbersDivided = numbers.map((e) => e / (max + 1)).toList();
-
-              Navigator.pop(context);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        StatTesterWidget(numbers: numbersDivided),
-                  ));
+              convertAndPushRoute(context);
             },
             child: const Text("Convertir")),
         TextButton(
@@ -133,5 +116,19 @@ class InvalidNumberFormatDialog extends StatelessWidget {
             child: const Text("Cancelar"))
       ],
     );
+  }
+
+  void convertAndPushRoute(BuildContext context) {
+    var max =
+        numbers.reduce((value, element) => value > element ? value : element);
+
+    var numbersDivided = numbers.map((e) => e / (max + 1)).toList();
+
+    Navigator.pop(context);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => StatTesterWidget(numbers: numbersDivided),
+        ));
   }
 }

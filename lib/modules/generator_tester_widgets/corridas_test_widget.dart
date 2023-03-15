@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:random_generators/modules/generator_tester_widgets/abstraction/generator_tester_widget.dart';
-import 'package:random_generators/modules/generator_testers/distance_test.dart';
+import 'package:random_generators/modules/generator_testers/corridas_test.dart';
 
-class DistanceTestWidget extends GeneratorTesterWidget {
-  const DistanceTestWidget({super.key, required super.numbers});
+class CorridasTestWidget extends GeneratorTesterWidget {
+  const CorridasTestWidget({super.key, required super.numbers});
 
   @override
-  State<DistanceTestWidget> createState() => _DistanceTestWidgetState();
+  State<CorridasTestWidget> createState() => _DistanceTestWidgetState();
 }
 
-class _DistanceTestWidgetState extends State<DistanceTestWidget> {
+class _DistanceTestWidgetState extends State<CorridasTestWidget> {
   @override
   Widget build(BuildContext context) {
-    var test = DistanceTest(numbers: widget.numbers);
+    var test = CorridasTest(numbers: widget.numbers);
     bool testResult = test.test();
 
     return Tooltip(
-      message: !testResult ? GeneratorTesterWidget.canDeny : GeneratorTesterWidget.cantDeny,
+      message: !testResult
+          ? GeneratorTesterWidget.canDeny
+          : GeneratorTesterWidget.cantDeny,
       child: Card(
           color: widget.getColor(testResult),
           child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -42,7 +44,8 @@ class _DistanceTestWidgetState extends State<DistanceTestWidget> {
             ),
             const Expanded(
               flex: 3,
-              child: Text("Prueba de la distancia",
+              child: Text(
+                  "Prueba de las corridas por encima y por debajo de la media",
                   style: TextStyle(color: Colors.white, fontSize: 25)),
             )
           ])),
