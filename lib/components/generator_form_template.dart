@@ -51,7 +51,7 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
               ],
             ),
           ),
-        GenerateButton(
+        _GenerateButton(
           onPressed: () {
             var isValid = _formState.currentState!.validate();
             warnings = widget.getWarnings(context);
@@ -63,8 +63,7 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
 
             var numbers = periodProxy(widget.numbers);
 
-            // Show AlertDialog that proposes to convert the numbers between 0 and 1 and returns a bool with the response
-            showDialog(
+            showDialog<bool>(
                 context: context,
                 builder: (context) {
                   return AlertDialog(
@@ -85,13 +84,8 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
                     ],
                   );
                 }).then((value) {
-              if (value) {
-                var max = numbers.reduce(
-                    (value, element) => value > element ? value : element);
-
-                numbers = numbers.map((e) => e / (max + 1)).toList();
-                Provider.of<GeneratorState>(context, listen: false)
-                    .setNumbers(numbers);
+              if (value != null && value) {
+                convertNumbers(numbers, context);
               } else {
                 Provider.of<GeneratorState>(context, listen: false)
                     .setNumbers(numbers);
@@ -102,10 +96,19 @@ class _GeneratorFormTemplateState extends State<GeneratorFormTemplate> {
       ],
     );
   }
+
+  /// Converts the numbers to numbers between 0 and 1
+  convertNumbers(List<double> numbers, BuildContext context) {
+    var max =
+        numbers.reduce((value, element) => value > element ? value : element);
+
+    numbers = numbers.map((e) => e / (max + 1)).toList();
+    Provider.of<GeneratorState>(context, listen: false).setNumbers(numbers);
+  }
 }
 
-class GenerateButton extends StatelessWidget {
-  const GenerateButton({super.key, required this.onPressed});
+class _GenerateButton extends StatelessWidget {
+  const _GenerateButton({required this.onPressed});
 
   final Function onPressed;
 
