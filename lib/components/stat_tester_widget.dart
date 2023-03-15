@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:random_generators/components/number_list.dart';
 import 'package:random_generators/modules/generator_tester_widgets/abstraction/generator_tester_widget.dart';
-import 'package:random_generators/modules/generator_tester_widgets/distance_test_widget.dart';
+import 'package:random_generators/modules/generator_tester_widgets/corridas_test_widget.dart';
 import 'package:random_generators/modules/generator_tester_widgets/frecuency_test_widget.dart';
 import 'package:random_generators/modules/generator_tester_widgets/kolmogorov_smirnov_widget.dart';
 import 'package:random_generators/modules/generator_tester_widgets/mean_test_widget.dart';
@@ -19,7 +19,7 @@ class StatTesterWidget extends StatelessWidget {
       FrecuencyTestWidget(numbers: numbers),
       SeriesTestWidget(numbers: numbers),
       KolmogorovSmirnovWidget(numbers: numbers),
-      DistanceTestWidget(numbers: numbers)
+      CorridasTestWidget(numbers: numbers)
     ];
 
     return Scaffold(

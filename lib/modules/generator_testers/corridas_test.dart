@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:random_generators/modules/generator_testers/abstraction/generator_tester.dart';
 
-class DistanceTest implements GeneratorTester {
+class CorridasTest implements GeneratorTester {
   List<double> numbers;
 
-  DistanceTest({required this.numbers});
+  CorridasTest({required this.numbers});
 
   get binaryArray {
     List<double> binaryArray = [];
