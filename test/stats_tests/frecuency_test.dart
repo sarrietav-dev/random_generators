@@ -1,4 +1,4 @@
-import 'package:random_generators/modules/generator_testers/frecuency_tester.dart';
+import 'package:random_generators/modules/generators/generator_testers/frecuency_tester.dart';
 import 'package:test/test.dart';
 
 main() {

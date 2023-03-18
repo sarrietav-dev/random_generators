@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:random_generators/modules/generator_tester_widgets/abstraction/generator_tester_widget.dart';
-import 'package:random_generators/modules/generator_testers/abstraction/generator_tester.dart';
-import 'package:random_generators/modules/generator_testers/series_tester.dart';
+import 'package:random_generators/modules/generators/generator_tester_widgets/abstraction/generator_tester_widget.dart';
+import 'package:random_generators/modules/generators/generator_testers/abstraction/generator_tester.dart';
+import 'package:random_generators/modules/generators/generator_testers/frecuency_tester.dart';
 
-class SeriesTestWidget extends GeneratorTesterWidget {
-  const SeriesTestWidget({super.key, required super.numbers});
+class FrecuencyTestWidget extends GeneratorTesterWidget {
+  const FrecuencyTestWidget({super.key, required super.numbers});
 
   @override
-  State<SeriesTestWidget> createState() => _SeriesTestWidgetState();
+  State<FrecuencyTestWidget> createState() => _FrecuencyTestWidgetState();
 }
 
-class _SeriesTestWidgetState extends State<SeriesTestWidget> {
+class _FrecuencyTestWidgetState extends State<FrecuencyTestWidget> {
   late GeneratorTester test;
   late bool testResult;
   double statistical = 0;
@@ -20,17 +20,16 @@ class _SeriesTestWidgetState extends State<SeriesTestWidget> {
 
   @override
   void initState() {
-    test = SeriesTester(numbers: widget.numbers, intervals: intervalNumber);
+    test = FrecuencyTester(numbers: widget.numbers, intervals: intervalNumber);
     testResult = test.test();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    statistical = test.getStatistical();
     return Tooltip(
-      message: !testResult
-          ? GeneratorTesterWidget.canDeny
-          : GeneratorTesterWidget.cantDeny,
+      message: !testResult ? GeneratorTesterWidget.canDeny : GeneratorTesterWidget.cantDeny,
       child: Card(
           color: widget.getColor(testResult),
           child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -62,7 +61,7 @@ class _SeriesTestWidgetState extends State<SeriesTestWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text("Prueba de series",
+                    const Text("Prueba de las frecuencias",
                         style: TextStyle(color: Colors.white, fontSize: 20)),
                     TextFormField(
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -85,32 +84,32 @@ class _SeriesTestWidgetState extends State<SeriesTestWidget> {
                           });
                           return;
                         }
-
+              
                         var intValue = int.parse(value);
-
-                        if (intValue <= 1 || intValue > 10) {
+              
+                        if (intValue <= 1 || intValue > 21) {
                           setState(() {
                             helperText =
-                                "El numero de intervalos debe estar entre 2 y 10";
+                                "El numero de intervalos debe estar entre 2 y 21";
                             testResult = false;
                           });
                           return;
                         }
-
+              
                         intervalNumber = intValue;
-
+              
                         setState(() {
-                          test = SeriesTester(
-                              numbers: widget.numbers,
-                              intervals: intervalNumber);
+                          test = FrecuencyTester(
+                              numbers: widget.numbers, intervals: intervalNumber);
+              
                           testResult = test.test();
-
+              
                           if (testResult) {
                             helperText =
-                                "No se puede rechazar que los numeros sean independientes";
+                                "No se puede rechazar que los numeros sigan una distribución uniforme";
                           } else {
                             helperText =
-                                "Se puede rechazar que los numeros sean independientes";
+                                "Se puede rechazar que los numeros sigan una distribución uniforme";
                           }
                         });
                       },

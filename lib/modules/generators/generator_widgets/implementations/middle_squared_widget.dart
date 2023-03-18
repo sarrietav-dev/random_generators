@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:random_generators/components/generator_form_template.dart';
 
-import '../../generators/generators/middle_squared.dart';
+import '../../generators/middle_squared.dart';
 
 class MiddleSquaredWidget extends GeneratorFormTemplate {
   MiddleSquaredWidget({super.key});

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:random_generators/components/generator_form_template.dart';
 import 'package:random_generators/models/generator_list.dart';
-import 'package:random_generators/modules/generator_widgets/implementations/blum_blum_shub_widget.dart';
-import 'package:random_generators/modules/generator_widgets/implementations/lagged_fib_widget.dart';
-import 'package:random_generators/modules/generator_widgets/implementations/middle_squared_widget.dart';
-import 'package:random_generators/modules/generator_widgets/implementations/mixto_widget.dart';
-import 'package:random_generators/modules/generator_widgets/implementations/multiplicativo_widget.dart';
-import 'package:random_generators/modules/generator_widgets/implementations/xor_shift_widget.dart';
+import 'package:random_generators/modules/generators/generator_widgets/implementations/blum_blum_shub_widget.dart';
+import 'package:random_generators/modules/generators/generator_widgets/implementations/lagged_fib_widget.dart';
+import 'package:random_generators/modules/generators/generator_widgets/implementations/middle_squared_widget.dart';
+import 'package:random_generators/modules/generators/generator_widgets/implementations/mixto_widget.dart';
+import 'package:random_generators/modules/generators/generator_widgets/implementations/multiplicativo_widget.dart';
+import 'package:random_generators/modules/generators/generator_widgets/implementations/xor_shift_widget.dart';
 import 'package:random_generators/modules/generators/generator.dart';
 
 class GeneratorState extends ChangeNotifier {

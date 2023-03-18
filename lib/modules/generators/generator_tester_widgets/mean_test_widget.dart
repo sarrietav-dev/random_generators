@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:random_generators/modules/generator_tester_widgets/abstraction/generator_tester_widget.dart';
-import 'package:random_generators/modules/generator_testers/corridas_test.dart';
+import 'package:random_generators/modules/generators/generator_tester_widgets/abstraction/generator_tester_widget.dart';
+import 'package:random_generators/modules/generators/generator_testers/mean_tester.dart';
 
-class CorridasTestWidget extends GeneratorTesterWidget {
-  const CorridasTestWidget({super.key, required super.numbers});
+class MeanTestWidget extends GeneratorTesterWidget {
+  const MeanTestWidget({super.key, required super.numbers});
 
   @override
-  State<CorridasTestWidget> createState() => _DistanceTestWidgetState();
+  State<MeanTestWidget> createState() => _MeanTestWidgetState();
 }
 
-class _DistanceTestWidgetState extends State<CorridasTestWidget> {
+class _MeanTestWidgetState extends State<MeanTestWidget> {
   @override
   Widget build(BuildContext context) {
-    var test = CorridasTest(numbers: widget.numbers);
+    var test = MeanTester(numbers: widget.numbers);
     bool testResult = test.test();
 
     return Tooltip(
-      message: !testResult
-          ? GeneratorTesterWidget.canDeny
-          : GeneratorTesterWidget.cantDeny,
+      message: !testResult ? GeneratorTesterWidget.canDeny : GeneratorTesterWidget.cantDeny,
       child: Card(
           color: widget.getColor(testResult),
           child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -44,8 +42,7 @@ class _DistanceTestWidgetState extends State<CorridasTestWidget> {
             ),
             const Expanded(
               flex: 3,
-              child: Text(
-                  "Prueba de las corridas por encima y por debajo de la media",
+              child: Text("Prueba de promedio",
                   style: TextStyle(color: Colors.white, fontSize: 25)),
             )
           ])),

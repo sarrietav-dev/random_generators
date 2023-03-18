@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:random_generators/modules/generator_testers/kolmogorov_smirnov.dart';
+import 'package:random_generators/modules/generators/generator_testers/kolmogorov_smirnov.dart';
 
 void main() {
   group("Kolmogorov-Smirnov test", () {

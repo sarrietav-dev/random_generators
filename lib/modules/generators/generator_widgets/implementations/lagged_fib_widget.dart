@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:random_generators/components/generator_form_template.dart';
 
-import '../../generators/generators/lagged_fib.dart';
+import '../../generators/lagged_fib.dart';
 
 class LaggedFibonacciWidget extends GeneratorFormTemplate {
   LaggedFibonacciWidget({super.key});

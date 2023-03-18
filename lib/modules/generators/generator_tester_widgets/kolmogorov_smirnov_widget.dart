@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:random_generators/modules/generator_tester_widgets/abstraction/generator_tester_widget.dart';
-import 'package:random_generators/modules/generator_testers/mean_tester.dart';
+import 'package:random_generators/modules/generators/generator_tester_widgets/abstraction/generator_tester_widget.dart';
+import 'package:random_generators/modules/generators/generator_testers/kolmogorov_smirnov.dart';
 
-class MeanTestWidget extends GeneratorTesterWidget {
-  const MeanTestWidget({super.key, required super.numbers});
+class KolmogorovSmirnovWidget extends GeneratorTesterWidget {
+  const KolmogorovSmirnovWidget({super.key, required super.numbers});
 
   @override
-  State<MeanTestWidget> createState() => _MeanTestWidgetState();
+  State<KolmogorovSmirnovWidget> createState() =>
+      _KolmogorovSmirnovWidgetState();
 }
 
-class _MeanTestWidgetState extends State<MeanTestWidget> {
+class _KolmogorovSmirnovWidgetState extends State<KolmogorovSmirnovWidget> {
   @override
   Widget build(BuildContext context) {
-    var test = MeanTester(numbers: widget.numbers);
+    var test = KolmogorovSmirnovTest(numbers: widget.numbers);
     bool testResult = test.test();
 
     return Tooltip(
@@ -42,7 +43,7 @@ class _MeanTestWidgetState extends State<MeanTestWidget> {
             ),
             const Expanded(
               flex: 3,
-              child: Text("Prueba de promedio",
+              child: Text("Prueba de Kolmogorov-Smirnov",
                   style: TextStyle(color: Colors.white, fontSize: 25)),
             )
           ])),

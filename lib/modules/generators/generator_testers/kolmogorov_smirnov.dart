@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:random_generators/modules/generator_testers/abstraction/generator_tester.dart';
+import 'package:random_generators/modules/generators/generator_testers/abstraction/generator_tester.dart';
 
 class KolmogorovSmirnovTest implements GeneratorTester {
   final List<double> numbers;
