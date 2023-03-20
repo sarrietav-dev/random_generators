@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:random_generators/components/generator_form_template.dart';
+import 'package:random_generators/modules/generators/generator_widgets/generator_form_template.dart';
 import 'package:random_generators/models/generator_list.dart';
 import 'package:random_generators/modules/generators/generator_widgets/implementations/blum_blum_shub_widget.dart';
 import 'package:random_generators/modules/generators/generator_widgets/implementations/lagged_fib_widget.dart';

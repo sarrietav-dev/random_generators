@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:random_generators/components/generator_form_template.dart';
+import 'package:random_generators/modules/generators/generator_widgets/generator_form_template.dart';
 
 import '../../generators/lagged_fib.dart';
 
