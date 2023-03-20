@@ -12,13 +12,13 @@ class PoissonDistVariable {
     }
 
     if (limits.isEmpty) {
-      limits = _generateList(40);
+      limits = _getLimitList(40);
     }
 
-    return _search(x, limits);
+    return _evaluateInLimits(x, limits);
   }
 
-  double _search(double x, List<double> searchRange) {
+  double _evaluateInLimits(double x, List<double> searchRange) {
     var middle = searchRange.length ~/ 2;
 
     if (middle == 1) {
@@ -30,9 +30,9 @@ class PoissonDistVariable {
     }
 
     if (x < searchRange[middle - 1]) {
-      return _search(x, searchRange.sublist(0, middle));
+      return _evaluateInLimits(x, searchRange.sublist(0, middle));
     } else {
-      return _search(x, searchRange.sublist(middle));
+      return _evaluateInLimits(x, searchRange.sublist(middle));
     }
   }
 
@@ -49,7 +49,7 @@ class PoissonDistVariable {
     }
   }
 
-  _generateList(int length) {
+  _getLimitList(int length) {
     List<double> list = [0];
 
     for (var i = 0; i < length; i++) {
