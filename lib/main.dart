@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:random_generators/pages/random_number_generator_page/random_number_generator_page.dart';
+import 'package:random_generators/pages/random_variables_page/random_variables_page.dart';
 
 import 'models/generator_state.dart';
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:
-            const RandomNumberGeneratorPage(title: "Random number generators"));
+        home: const RandomVariablesPage());
+    //const RandomNumberGeneratorPage(title: "Random number generators"));
   }
 }
