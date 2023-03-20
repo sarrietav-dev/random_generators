@@ -22,7 +22,7 @@ class PageWithSidebar extends StatelessWidget {
           ),
           child: SizedBox(width: 300, child: sidebarChild),
         ),
-        child
+        Expanded(child: child)
       ],
     );
   }
