@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../models/random_variable_state.dart';
 
 abstract class DistributionForm extends StatefulWidget {
   const DistributionForm({super.key});
 
   List<Widget> get formFields;
-  onSubmit(BuildContext context);
+  List<double> onSubmit(BuildContext context);
 
   @override
   State<DistributionForm> createState() => _DistributionFormState();
@@ -31,7 +34,14 @@ class _DistributionFormState extends State<DistributionForm> {
               )),
         ),
         ElevatedButton(
-            onPressed: widget.onSubmit(context),
+            onPressed: () {
+              if (_formState.currentState!.validate()) {
+                var randomVariables = widget.onSubmit(context);
+
+                Provider.of<RandomVariableState>(context, listen: false)
+                    .randomVariables = randomVariables;
+              }
+            },
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
                 shape: const ContinuousRectangleBorder(

@@ -10,8 +10,8 @@ class DistributionFormWithLambda extends DistributionForm {
 
   final RandomVariableGenerator Function(double lambda) randomVariableGenerator;
 
-  final TextEditingController lamndaController = TextEditingController();
-  get lambda => int.parse(lamndaController.text);
+  final TextEditingController lamndaController = TextEditingController(text: '0');
+  get lambda => double.parse(lamndaController.text);
 
   @override
   List<Widget> get formFields => [_getLamndaFormField()];
@@ -31,10 +31,10 @@ class DistributionFormWithLambda extends DistributionForm {
   onSubmit(BuildContext context) {
     var generator = randomVariableGenerator(lambda);
 
-    var provider = Provider.of<RandomVariableState>(context);
+    var provider = Provider.of<RandomVariableState>(context, listen: false);
 
     var randomVariables = provider.randomNumbers.map((e) => generator.get(e));
 
-    provider.randomVariables = randomVariables.toList();
+    return randomVariables.toList();
   }
 }
