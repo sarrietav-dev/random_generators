@@ -9,9 +9,9 @@ class DistributionFormWithRange extends DistributionForm {
   DistributionFormWithRange({super.key});
 
   final TextEditingController aController = TextEditingController(text: '0');
-  get a => int.parse(aController.text);
+  get a => double.parse(aController.text);
   final TextEditingController bController = TextEditingController(text: '0');
-  get b => int.parse(bController.text);
+  get b => double.parse(bController.text);
 
   @override
   List<Widget> get formFields => [
