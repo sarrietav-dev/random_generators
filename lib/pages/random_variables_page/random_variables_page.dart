@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:random_generators/layout/page_with_sidebar.dart';
 import 'package:random_generators/models/random_variable_state.dart';
+import 'package:random_generators/modules/random_variable_generators/exponential.dart';
+import 'package:random_generators/modules/random_variable_generators/poisson.dart';
 import 'package:random_generators/pages/random_variables_page/components/distribution_dropdown.dart';
-import 'package:random_generators/pages/random_variables_page/components/distribution_forms/implementations/poisson_form.dart';
+import 'package:random_generators/pages/random_variables_page/components/distribution_forms/implementations/distribution_form_with_lambda.dart';
 
 class RandomVariablesPage extends StatelessWidget {
   const RandomVariablesPage({super.key});
@@ -11,9 +13,9 @@ class RandomVariablesPage extends StatelessWidget {
   _getDistributionForm(RandomVariableState state) {
     switch (state.getDistribution()) {
       case Distributions.exponential:
-        break;
+        return DistributionFormWithLambda((lambda) => ExponentialDistVariable(lambda: lambda),);
       case Distributions.poisson:
-        return PoissonForm();
+        return DistributionFormWithLambda((lambda) => PoissonDistVariable(lambda: lambda),);
       case Distributions.uniform:
         break;
       default:

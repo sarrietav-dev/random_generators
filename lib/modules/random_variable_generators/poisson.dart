@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:random_generators/modules/random_variable_generators/random_variable_generator.dart';
 
 class PoissonDistVariable implements RandomVariableGenerator {
-  final int lambda;
+  final double lambda;
   List<double> limits = [];
 
   PoissonDistVariable({required this.lambda});
