@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:random_generators/helpers/values_in_zero_and_one_checker.dart';
 import 'package:random_generators/models/generator_state.dart';
 import 'package:random_generators/modules/excel/excel_reader.dart';
-import 'package:random_generators/components/stat_tester_widget.dart';
+import 'package:random_generators/pages/stat_tester_page/stat_tester_page.dart';
 
 class ImportDialog extends StatelessWidget {
   const ImportDialog({
@@ -64,7 +64,7 @@ class ImportDialog extends StatelessWidget {
   void showTestsPage(BuildContext context, List<double> numbers) {
     Navigator.push(context, MaterialPageRoute(
       builder: (context) {
-        return StatTesterWidget(numbers: numbers);
+        return StatTesterPage(numbers: numbers);
       },
     ));
   }
@@ -107,7 +107,7 @@ class InvalidNumberFormatDialog extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => StatTesterWidget(numbers: numbers),
+                    builder: (context) => StatTesterPage(numbers: numbers),
                   ));
             },
             child: const Text("Continuar")),
@@ -128,7 +128,7 @@ class InvalidNumberFormatDialog extends StatelessWidget {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => StatTesterWidget(numbers: numbersDivided),
+          builder: (context) => StatTesterPage(numbers: numbersDivided),
         ));
   }
 }

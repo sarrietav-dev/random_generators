@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:random_generators/components/number_list.dart';
 import 'package:random_generators/layout/page_with_sidebar.dart';
 import 'package:random_generators/models/random_variable_state.dart';
 import 'package:random_generators/modules/random_variable_generators/exponential.dart';
@@ -51,7 +52,9 @@ class RandomVariablesPage extends StatelessWidget {
                     )
                   ],
                 ),
-                child: const Placeholder());
+                child: ListView(children: [
+                  NumberList(numbers: state.randomNumbers),
+                ]));
           },
         ));
   }
