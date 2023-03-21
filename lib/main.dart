@@ -3,13 +3,17 @@ import 'package:provider/provider.dart';
 import 'package:random_generators/pages/random_number_generator_page/random_number_generator_page.dart';
 
 import 'models/generator_state.dart';
+import 'models/random_variable_state.dart';
 
 void main(List<String> args) {
-  runApp(ChangeNotifierProvider(
-      create: (context) {
-        return GeneratorState();
-      },
-      child: const MyApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => GeneratorState(),
+    ),
+    ChangeNotifierProvider(
+      create: (context) => RandomVariableState(),
+    )
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

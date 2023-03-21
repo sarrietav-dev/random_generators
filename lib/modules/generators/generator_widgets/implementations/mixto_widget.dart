@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:random_generators/components/generator_form_template.dart';
+import 'package:random_generators/modules/generators/generator_widgets/generator_form_template.dart';
 import 'package:random_generators/models/generator_state.dart';
 import 'package:random_generators/modules/generators/generators/mixto.dart';
 import 'package:random_generators/validators/validators.dart';
