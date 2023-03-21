@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:random_generators/layout/page_with_sidebar.dart';
 import 'package:random_generators/models/random_variable_state.dart';
 import 'package:random_generators/pages/random_variables_page/components/distribution_dropdown.dart';
+import 'package:random_generators/pages/random_variables_page/components/distribution_forms/implementations/distribution_form_with_lambda.dart';
 
 class RandomVariablesPage extends StatelessWidget {
   const RandomVariablesPage({super.key});
@@ -25,7 +26,12 @@ class RandomVariablesPage extends StatelessWidget {
                 sidebarChild: Column(
                   children: [
                     DistributionDropdown(
-                        entries: entries, onSelected: onDropdownSelected)
+                        entries: entries, onSelected: onDropdownSelected),
+                    Expanded(
+                      child: DistributionFormWithLambda(
+                        onSubmit: () {},
+                      ),
+                    )
                   ],
                 ),
                 child: const Placeholder());
