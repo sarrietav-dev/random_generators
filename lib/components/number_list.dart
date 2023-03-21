@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 class NumberList<T> extends StatelessWidget {
   const NumberList(
-      {super.key, required this.numbers, this.extraColumns, this.extraRows})
-      : assert(extraColumns == null || extraColumns.length == numbers.length),
-        assert(extraRows == null || extraRows.length == numbers.length);
+      {super.key, required this.numbers, this.extraColumns, this.extraRows});
 
   final List<T> numbers;
   final List<DataColumn>? extraColumns;

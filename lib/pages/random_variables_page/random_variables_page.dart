@@ -9,6 +9,7 @@ import 'package:random_generators/pages/random_variables_page/components/distrib
 import 'package:random_generators/pages/random_variables_page/components/distribution_forms/implementations/distribution_form_with_lambda.dart';
 
 import 'components/distribution_forms/implementations/distribution_form_with_range.dart';
+import 'package:collection/collection.dart';
 
 class RandomVariablesPage extends StatelessWidget {
   const RandomVariablesPage({super.key});
@@ -27,6 +28,41 @@ class RandomVariablesPage extends StatelessWidget {
         return DistributionFormWithRange();
       default:
         return const Text("Por favor elije una distribución");
+    }
+  }
+
+  _getTable(RandomVariableState state) {
+    var randomNumbers = state.randomNumbers;
+    var randomVariables = state.randomVariables;
+
+    if (randomVariables.isEmpty) {
+      return NumberList(numbers: randomNumbers);
+    } else {
+      var zippedNumbers = IterableZip([randomNumbers, randomVariables]);
+
+      return DataTable(columns: const [
+        DataColumn(
+            label: Text("Numers aleatorios"),
+            tooltip: "Numeros aleatorios generados"),
+        DataColumn(
+            label: Text("Variables aleatorias"),
+            tooltip: "Variables aleatorias generadas")
+      ], rows: [
+        ...zippedNumbers
+            .map(
+              (numbers) => DataRow(
+                cells: [
+                  DataCell(
+                    Text(numbers[0].toString()),
+                  ),
+                  DataCell(
+                    Text(numbers[1].toString()),
+                  )
+                ],
+              ),
+            )
+            .toList()
+      ]);
     }
   }
 
@@ -52,9 +88,7 @@ class RandomVariablesPage extends StatelessWidget {
                     )
                   ],
                 ),
-                child: ListView(children: [
-                  NumberList(numbers: state.randomNumbers),
-                ]));
+                child: ListView(children: [_getTable(state)]));
           },
         ));
   }
