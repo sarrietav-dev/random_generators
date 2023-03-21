@@ -7,17 +7,23 @@ import 'package:random_generators/modules/random_variable_generators/poisson.dar
 import 'package:random_generators/pages/random_variables_page/components/distribution_dropdown.dart';
 import 'package:random_generators/pages/random_variables_page/components/distribution_forms/implementations/distribution_form_with_lambda.dart';
 
+import 'components/distribution_forms/implementations/distribution_form_with_range.dart';
+
 class RandomVariablesPage extends StatelessWidget {
   const RandomVariablesPage({super.key});
 
   _getDistributionForm(RandomVariableState state) {
     switch (state.getDistribution()) {
       case Distributions.exponential:
-        return DistributionFormWithLambda((lambda) => ExponentialDistVariable(lambda: lambda),);
+        return DistributionFormWithLambda(
+          (lambda) => ExponentialDistVariable(lambda: lambda),
+        );
       case Distributions.poisson:
-        return DistributionFormWithLambda((lambda) => PoissonDistVariable(lambda: lambda),);
+        return DistributionFormWithLambda(
+          (lambda) => PoissonDistVariable(lambda: lambda),
+        );
       case Distributions.uniform:
-        break;
+        return DistributionFormWithRange();
       default:
         return const Text("Por favor elije una distribución");
     }
