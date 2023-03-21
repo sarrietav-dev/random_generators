@@ -9,6 +9,6 @@ class ExponentialDistVariable implements RandomVariableGenerator {
 
   @override
   double get(double x) {
-    return -log(1 - x) / lambda;
+    return -(lambda) * log(x);
   }
 }
