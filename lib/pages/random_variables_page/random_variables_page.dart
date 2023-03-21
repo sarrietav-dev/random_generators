@@ -77,16 +77,19 @@ class RandomVariablesPage extends StatelessWidget {
             var entries = state.distributionNames;
 
             return PageWithSidebar(
-                sidebarChild: Column(
-                  children: [
-                    DistributionDropdown(
-                        entries: entries,
-                        onSelected: (value) => state.distribution =
-                            state.mapIntToDistribution(value!)),
-                    Expanded(
-                      child: _getDistributionForm(state),
-                    )
-                  ],
+                sidebarChild: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Column(
+                    children: [
+                      DistributionDropdown(
+                          entries: entries,
+                          onSelected: (value) => state.distribution =
+                              state.mapIntToDistribution(value!)),
+                      Expanded(
+                        child: _getDistributionForm(state),
+                      )
+                    ],
+                  ),
                 ),
                 child: ListView(children: [_getTable(state)]));
           },
