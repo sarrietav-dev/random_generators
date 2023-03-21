@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RandomVariableState extends ChangeNotifier {
-  Distributions? _distribution;
+  Distributions? _distributionType;
 
   List<String> get distributionNames => [
         "Exponencial",
@@ -10,11 +10,11 @@ class RandomVariableState extends ChangeNotifier {
       ];
 
   set distribution(Distributions value) {
-    _distribution = value;
+    _distributionType = value;
     notifyListeners();
   }
 
-  Distributions? getDistribution() => _distribution;
+  Distributions? getDistribution() => _distributionType;
 
   mapIntToDistribution(int value) {
     switch (value) {
@@ -27,6 +27,10 @@ class RandomVariableState extends ChangeNotifier {
       default:
         return null;
     }
+  }
+
+  getRandomVariables(List<double> randomNumbers) {
+
   }
 }
 
