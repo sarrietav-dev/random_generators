@@ -7,10 +7,10 @@ import 'models/random_variable_state.dart';
 
 void main(List<String> args) {
   runApp(MultiProvider(providers: [
-    Provider(
+    ChangeNotifierProvider(
       create: (context) => GeneratorState(),
     ),
-    Provider(
+    ChangeNotifierProvider(
       create: (context) => RandomVariableState(),
     )
   ], child: const MyApp()));

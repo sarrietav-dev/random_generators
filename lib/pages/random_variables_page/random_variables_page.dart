@@ -8,8 +8,17 @@ import 'package:random_generators/pages/random_variables_page/components/distrib
 class RandomVariablesPage extends StatelessWidget {
   const RandomVariablesPage({super.key});
 
-  onDropdownSelected(int? value) {
-    print(value);
+  _getDistributionForm(RandomVariableState state) {
+    switch (state.getDistribution()) {
+      case Distributions.exponential:
+        return DistributionFormWithLambda(onSubmit: () {});
+      case Distributions.poisson:
+        return DistributionFormWithLambda(onSubmit: () {});
+      case Distributions.uniform:
+        return DistributionFormWithLambda(onSubmit: () {});
+      default:
+        return const Text("Por favor elije una distribución");
+    }
   }
 
   @override
@@ -19,18 +28,18 @@ class RandomVariablesPage extends StatelessWidget {
           title: const Text('Random Variables'),
         ),
         body: Consumer<RandomVariableState>(
-          builder: (context, value, child) {
-            var entries = value.distributionNames;
+          builder: (context, state, child) {
+            var entries = state.distributionNames;
 
             return PageWithSidebar(
                 sidebarChild: Column(
                   children: [
                     DistributionDropdown(
-                        entries: entries, onSelected: onDropdownSelected),
+                        entries: entries,
+                        onSelected: (value) => state.distribution =
+                            state.mapIntToDistribution(value!)),
                     Expanded(
-                      child: DistributionFormWithLambda(
-                        onSubmit: () {},
-                      ),
+                      child: _getDistributionForm(state),
                     )
                   ],
                 ),
