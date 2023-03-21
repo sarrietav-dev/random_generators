@@ -21,17 +21,21 @@ class _DistributionFormState extends State<DistributionForm> {
     return Column(
       children: [
         Expanded(
-          child: Form(
-              key: _formState,
-              child: ListView(
-                children: [
-                  Wrap(
-                    children: [
-                      for (var field in widget.formFields) field,
-                    ],
-                  )
-                ],
-              )),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Form(
+                key: _formState,
+                child: ListView(
+                  children: [
+                    Wrap(
+                      runSpacing: 25,
+                      children: [
+                        for (var field in widget.formFields) field,
+                      ],
+                    )
+                  ],
+                )),
+          ),
         ),
         ElevatedButton(
             onPressed: () {
