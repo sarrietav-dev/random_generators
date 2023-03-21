@@ -23,20 +23,23 @@ class ImportDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var numbers = Provider.of<GeneratorState>(context, listen: false).numbers;
     return AlertDialog(
       title: const Text("Importar números"),
       content: const Text("Deseas importar los números o usar generados?"),
       actions: [
-        TextButton(
-            onPressed: () {
-              var numbers = Provider.of<GeneratorState>(context, listen: false)
-                  .numbers
-                  .map((e) => e.toDouble())
-                  .toList();
+        if (numbers.isNotEmpty)
+          TextButton(
+              onPressed: () {
+                var numbers =
+                    Provider.of<GeneratorState>(context, listen: false)
+                        .numbers
+                        .map((e) => e.toDouble())
+                        .toList();
 
-              validateNumberFormatAndPushRoute(numbers, context);
-            },
-            child: const Text("Generados")),
+                validateNumberFormatAndPushRoute(numbers, context);
+              },
+              child: const Text("Generados")),
         TextButton(
             onPressed: () {
               readFile().then((path) {
