@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:random_generators/pages/random_variables_page/components/distribution_forms/distribution_form.dart';
 
-class DistributionFormWithLambda extends DistributionForm {
-  DistributionFormWithLambda({super.key, required super.onSubmit});
+abstract class DistributionFormWithLambda extends DistributionForm {
+  DistributionFormWithLambda({super.key});
 
   final TextEditingController lamndaController = TextEditingController();
   get lamnda => int.parse(lamndaController.text);

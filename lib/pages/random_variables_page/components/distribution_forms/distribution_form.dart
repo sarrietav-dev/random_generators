@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 abstract class DistributionForm extends StatefulWidget {
-  const DistributionForm({super.key, required this.onSubmit});
+  const DistributionForm({super.key});
 
   List<Widget> get formFields;
-  final Function() onSubmit;
+  onSubmit(BuildContext context);
 
   @override
   State<DistributionForm> createState() => _DistributionFormState();
@@ -31,7 +31,7 @@ class _DistributionFormState extends State<DistributionForm> {
               )),
         ),
         ElevatedButton(
-            onPressed: widget.onSubmit(),
+            onPressed: widget.onSubmit(context),
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
                 shape: const ContinuousRectangleBorder(

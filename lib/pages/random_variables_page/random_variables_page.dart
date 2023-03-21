@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:random_generators/layout/page_with_sidebar.dart';
 import 'package:random_generators/models/random_variable_state.dart';
 import 'package:random_generators/pages/random_variables_page/components/distribution_dropdown.dart';
-import 'package:random_generators/pages/random_variables_page/components/distribution_forms/implementations/distribution_form_with_lambda.dart';
+import 'package:random_generators/pages/random_variables_page/components/distribution_forms/implementations/poisson_form.dart';
 
 class RandomVariablesPage extends StatelessWidget {
   const RandomVariablesPage({super.key});
@@ -11,11 +11,11 @@ class RandomVariablesPage extends StatelessWidget {
   _getDistributionForm(RandomVariableState state) {
     switch (state.getDistribution()) {
       case Distributions.exponential:
-        return DistributionFormWithLambda(onSubmit: () {});
+        break;
       case Distributions.poisson:
-        return DistributionFormWithLambda(onSubmit: () {});
+        return PoissonForm();
       case Distributions.uniform:
-        return DistributionFormWithLambda(onSubmit: () {});
+        break;
       default:
         return const Text("Por favor elije una distribución");
     }
