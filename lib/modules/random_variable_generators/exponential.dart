@@ -1,10 +1,13 @@
 import 'dart:math';
 
-class ExponentialDistVariable {
+import 'package:random_generators/modules/random_variable_generators/random_variable_generator.dart';
+
+class ExponentialDistVariable implements RandomVariableGenerator {
   double lambda;
 
   ExponentialDistVariable({required this.lambda});
 
+  @override
   double get(double x) {
     return -log(1 - x) / lambda;
   }

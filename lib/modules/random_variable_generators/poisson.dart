@@ -1,11 +1,14 @@
 import 'dart:math';
 
-class PoissonDistVariable {
+import 'package:random_generators/modules/random_variable_generators/random_variable_generator.dart';
+
+class PoissonDistVariable implements RandomVariableGenerator {
   final int lambda;
   List<double> limits = [];
 
   PoissonDistVariable({required this.lambda});
 
+  @override
   double get(double x) {
     if (x < 0 || x > 1) {
       throw ArgumentError("X must be between 0 and 1");
