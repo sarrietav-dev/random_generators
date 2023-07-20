@@ -19,11 +19,8 @@ class RandomVariableState extends ChangeNotifier {
 
   List<double> get randomNumbers => _randomNumbers;
 
-  List<String> get distributionNames => [
-        "Exponencial",
-        "Poisson",
-        "Uniforme",
-      ];
+  List<String> get distributionNames =>
+      ["Exponencial", "Poisson", "Uniforme", "Normal"];
 
   set distribution(Distributions value) {
     _distributionType = value;
@@ -40,14 +37,12 @@ class RandomVariableState extends ChangeNotifier {
         return Distributions.poisson;
       case 2:
         return Distributions.uniform;
+      case 3:
+        return Distributions.normal;
       default:
         return null;
     }
   }
 }
 
-enum Distributions {
-  exponential,
-  poisson,
-  uniform,
-}
+enum Distributions { exponential, poisson, uniform, normal }

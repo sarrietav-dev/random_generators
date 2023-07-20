@@ -41,6 +41,7 @@ class _DistributionFormState extends State<DistributionForm> {
             onPressed: () {
               if (_formState.currentState!.validate()) {
                 var randomVariables = widget.onSubmit(context);
+                print("Random variables: $randomVariables");
 
                 Provider.of<RandomVariableState>(context, listen: false)
                     .randomVariables = randomVariables;
